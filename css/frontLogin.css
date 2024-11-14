@@ -1,0 +1,59 @@
+
+
+.inpLog {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 15px;
+}
+
+.texto-enlace {
+    color: #1a73e8;
+    font-weight: bold;
+    cursor: pointer;   
+    margin-left: 145px;
+}
+
+.texto-enlace2 {
+    color: #1a73e8;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/*.texto-enlace:hover {
+    text-decoration: underline; 
+}*/
+
+.btnLog {
+    padding: 12px 24px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.logSN {
+    width: 100px;
+}
+
+.body-respass {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.logores {
+    width: 500px;
+}
+
+.red{
+    color: red;
+    size: 700px;
+}
