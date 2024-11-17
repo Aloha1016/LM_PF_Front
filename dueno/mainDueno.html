@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <link rel="stylesheet" href="mainDueno.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <span class="material-icons">dashboard</span> KANBAN
+        </div>
+        <nav class="menu">
+            <a href="./Dashboard/Dashboard.html" class="menu-item"><span class="material-icons">home</span> Dashboard</a>
+            <a href="#" class="menu-item"><span class="material-icons">inventory</span> Inventory</a>
+            <a href="#" class="menu-item"><span class="material-icons">bar_chart</span> Reports</a>
+            <a href="#" class="menu-item"><span class="material-icons">people</span> Suppliers</a>
+            <a href="#" class="menu-item"><span class="material-icons">shopping_cart</span> Orders</a>
+            <a href="#" class="menu-item"><span class="material-icons">store</span> Manage Store</a>
+        </nav>
+        <nav class="options">
+            <a href="#" class="menu-item"><span class="material-icons">settings</span> Settings</a>
+            <button class="log-button" onclick="logout()"><span class="material-icons">logout</span> Log Out</button>
+        </nav>
+    </div>
+    
+    <div class="main-content">
+        <header class="header">
+            <div class="search-container">
+                <span class="material-icons">search</span>
+                <input type="text" class="search-bar" placeholder="Search product, supplier, order">
+            </div>
+            <div class="header-icons">
+                <button class="icon-button"><span class="material-icons">notifications</span></button>
+                <button class="icon-button"><span class="material-icons">account_circle</span></button>
+            </div>
+        </header>
+    </div>
+
+    <script src="./js/Auth_Logout.js"></script>
+</body>
+</html>
