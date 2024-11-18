@@ -43,58 +43,148 @@
         </header>
         <div class="content">
             <div class="frame sales-overview">Resumen</div>
-            <div class="frame inventory-summary">Categoria Mejor Vendida</div>
-            
-            <div class="container mt-5">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Add Product
-                </button>
+            <div class="frame inventory-summary">
+                <p class="me-3">Categoria Mejor Vendida</p>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Producto">Agregar Producto</button>
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#Filtros">Agregar Producto</button>
+                <button type="button" class="btn">Historial de Pedidos</button>
             </div>
-        
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            
+            <div class="modal fade" id="Producto" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">New Order</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h5 class="modal-title" id="exampleModalLabel">Nueva Orden</h5>
+                            <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
                         </div>
                         <div class="modal-body">
-                            <!-- Formulario dentro del modal -->
                             <form>
                                 <div class="mb-3">
-                                    <label for="productName" class="form-label">Product Name</label>
-                                    <input type="text" class="form-control" id="productName" placeholder="Enter product name">
+                                    <label for="productName" class="form-label">Nombre del Producto</label>
+                                    <input type="text" class="form-control" id="productName" placeholder="Ingresa el Nombre del Producto">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="productId" class="form-label">Product ID</label>
-                                    <input type="text" class="form-control" id="productId" placeholder="Enter product ID">
+                                    <label for="productId" class="form-label">ID del Producto</label>
+                                    <input type="text" class="form-control" id="productId" placeholder="Ingresa el ID del Producto">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="category" class="form-label">Category</label>
+                                    <label for="category" class="form-label">Categoría</label>
                                     <select class="form-select" id="category">
-                                        <option value="1">Category 1</option>
-                                        <option value="2">Category 2</option>
-                                        <option value="3">Category 3</option>
+                                        <option value="1"></option>
+                                        <option value="2"></option>
+                                        <option value="3"></option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="orderValue" class="form-label">Order Value</label>
-                                    <input type="number" class="form-control" id="orderValue" placeholder="Enter order value">
+                                    <label for="orderValue" class="form-label">Valor de la Orden</label>
+                                    <input type="number" class="form-control" id="orderValue" placeholder="Ingresa el Valor de la Orden">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="deliveryDate" class="form-label">Date of Delivery</label>
+                                    <label for="orderValue" class="form-label">Cantidad</label>
+                                    <input type="number" class="form-control" id="orderValue" placeholder="Cantidad">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="orderValue" class="form-label">Unidad del Producto</label>
+                                    <input type="text" class="form-control" id="orderValue" placeholder="Ingresa la Unidad del Producto">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="orderValue" class="form-label">Precio de Compra</label>
+                                    <input type="number" class="form-control" id="orderValue" placeholder="Ingresa el Precio de la Cuenta">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="deliveryDate" class="form-label">Fecha de la entrega</label>
                                     <input type="date" class="form-control" id="deliveryDate">
                                 </div>
                                 <div class="form-check">
                                     <input type="checkbox" class="form-check-input" id="notify">
-                                    <label class="form-check-label" for="notify">Notify on the date of delivery</label>
+                                    <label class="form-check-label" for="notify">Avisar en la fecha de entrega</label>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
-                            <button type="button" class="btn btn-primary">Add Product</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Descartar</button>
+                            <button type="button" class="btn btn-primary">Agregar Producto</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="Filtros" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Filtros</h5>
+                            
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <h5>Estatus</h5>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="confirmed">
+                                    <label class="form-check-label">
+                                        Confirmado
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="returned">
+                                    <label class="form-check-label">
+                                        Devuelto
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="delayed">
+                                    <label class="form-check-label">
+                                        Retrasado
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="out">
+                                    <label class="form-check-label">
+                                        En Entrega
+                                    </label>
+                                </div>
+                                <h5>Otros</h5>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="availability" id="cantmtl">
+                                    <label class="form-check-label">
+                                        Cantidad (Mayor a menor)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="availability" id="cantltm">
+                                    <label class="form-check-label">
+                                        Cantidad (Menor a mayor)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="availability" id="valmtl">
+                                    <label class="form-check-label">
+                                        Valor (Mayor a menor)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="availability" id="valltm">
+                                    <label class="form-check-label">
+                                        Valor (Menor a mayor)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="availability" id="antmtl">
+                                    <label class="form-check-label">
+                                        Antigüedad (Mayor a menor)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="availability" id="antltm">
+                                    <label class="form-check-label">
+                                        Antigüedad (Menor a mayor)
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Descartar</button>
+                            <button type="button" class="btn btn-primary">Aceptar</button>
                         </div>
                     </div>
                 </div>
