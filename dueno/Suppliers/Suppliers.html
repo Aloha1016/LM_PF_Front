@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reportes</title>
-    <link rel="stylesheet" href="./Orders.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./Suppliers.css">
+    <link rel="stylesheet" href="./modal.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </head>
 <body>
@@ -42,65 +41,112 @@
             </div>
         </header>
         <div class="content">
-            
-            
-            <div class="container mt-5">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Add Product
-                </button>
-            </div>
-        
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
+            <div class="single-frame">
+                <div class="suppliers-header">
+                    <h2>Proveedores</h2>
+                    <div class="table-actions">
+                        <button id="addProductBtn">Agregar Proveedor</button>
+                        <button>Filtros</button>
+                        <button>Download all</button>
+                    </div>
+                </div>
+
+                <!-- Formulario Modal -->
+                <div id="productModal" class="modal">
                     <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">New Order</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Formulario dentro del modal -->
+                        <span class="close">&times;</span>
+                        <h2>Nuevo Proveedor</h2>
+                        <div class="form-container">
+                            <div class="image-upload">
+                                <div class="image-placeholder">
+                                    Drag image here <br> or <a href="#">Browse image</a>
+                                </div>
+                            </div>
                             <form>
-                                <div class="mb-3">
-                                    <label for="productName" class="form-label">Product Name</label>
-                                    <input type="text" class="form-control" id="productName" placeholder="Enter product name">
+                                <label>Nombre del Proveedor</label>
+                                <input type="text" placeholder="Enter supplier name">
+
+                                <label>Producto</label>
+                                <input type="text" placeholder="Enter product ID">
+
+                                <label>Categoria</label>
+                                <select>
+                                    <option>Categoria 1</option>
+                                    <option>Category 2</option>
+                                    <option>Category 3</option>
+                                </select>
+
+                                <label>Precio de Compra</label>
+                                <input type="number" placeholder="Enter buying price">
+
+                                <label>Numero de Contacto</label>
+                                <input type="text" placeholder="Enter contact number">
+
+                                <label>Tipo</label>
+                                <div class="form-buttons">
+                                    <input type="radio" id="not-taking-return" name="type" value="not-taking-return">
+                                    <label for="not-taking-return">Not taking return</label>
+                                    <input type="radio" id="taking-return" name="type" value="taking-return">
+                                    <label for="taking-return">Taking return</label>
                                 </div>
-                                <div class="mb-3">
-                                    <label for="productId" class="form-label">Product ID</label>
-                                    <input type="text" class="form-control" id="productId" placeholder="Enter product ID">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="category" class="form-label">Category</label>
-                                    <select class="form-select" id="category">
-                                        <option value="1">Category 1</option>
-                                        <option value="2">Category 2</option>
-                                        <option value="3">Category 3</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="orderValue" class="form-label">Order Value</label>
-                                    <input type="number" class="form-control" id="orderValue" placeholder="Enter order value">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="deliveryDate" class="form-label">Date of Delivery</label>
-                                    <input type="date" class="form-control" id="deliveryDate">
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="notify">
-                                    <label class="form-check-label" for="notify">Notify on the date of delivery</label>
+                                
+
+                                <div class="form-buttons">
+                                    <button type="button" class="discard">Descartar</button>
+                                    <button type="submit" class="add-product">Agregar Proveedor</button>
                                 </div>
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Discard</button>
-                            <button type="button" class="btn btn-primary">Add Product</button>
-                        </div>
                     </div>
                 </div>
+
+                <table class="suppliers-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre del Proveedor</th>
+                            <th>Producto</th>
+                            <th>Numero de Contacto</th>
+                            <th>Email</th>
+                            <th>Tipo</th>
+                            <th>En camino</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Richard Martin</td>
+                            <td>Kit Kat</td>
+                            <td>7687764556</td>
+                            <td>richard@gmail.com</td>
+                            <td class="status taking-return">Taking Return</td>
+                            <td>13</td>
+                        </tr>
+                        <tr>
+                            <td>Tom Homan</td>
+                            <td>Maaza</td>
+                            <td>9867545368</td>
+                            <td>tomhoman@gmail.com</td>
+                            <td class="status taking-return">Taking Return</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>Veandir</td>
+                            <td>Dairy Milk</td>
+                            <td>9867545566</td>
+                            <td>veandir@gmail.com</td>
+                            <td class="status not-taking-return">Not Taking Return</td>
+                            <td>-</td>
+                        </tr>
+                        <!-- Más filas -->
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <button>Anterior</button>
+                    <span>Page 1 of 10</span>
+                    <button>Siguiente</button>
+                </div>
             </div>
-        
         </div>
     </div>
-    
+    <script src="./form.js"></script>
 </body>
 </html>
