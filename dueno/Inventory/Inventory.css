@@ -146,7 +146,6 @@ body {
 }
 
 .overview-cards {
-    padding-top: 15px;
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
     gap: 20px;
@@ -238,4 +237,3 @@ body {
     align-items: center;
     margin-top: 20px;
 }
-

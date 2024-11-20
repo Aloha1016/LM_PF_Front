@@ -52,7 +52,7 @@
                 </div>
 
                 <!-- Formulario Modal -->
-                <div id="productModal" class="modal">
+                <div id="supplierModal" class="modal">
                     <div class="modal-content">
                         <span class="close">&times;</span>
                         <h2>Nuevo Proveedor</h2>
@@ -83,17 +83,20 @@
                                 <input type="text" placeholder="Enter contact number">
 
                                 <label>Tipo</label>
-                                <div class="form-buttons">
-                                    <input type="radio" id="not-taking-return" name="type" value="not-taking-return">
-                                    <label for="not-taking-return">Not taking return</label>
-                                    <input type="radio" id="taking-return" name="type" value="taking-return">
-                                    <label for="taking-return">Taking return</label>
+                                <div class="radio-buttons">
+                                    <div class="radio-option">
+                                        <input type="radio" id="not-taking-return" name="type" value="not-taking-return">
+                                        <label for="not-taking-return">Not taking return</label>    
+                                    </div>
+                                    <div class="radio-option">
+                                        <input type="radio" id="taking-return" name="type" value="taking-return">
+                                        <label for="taking-return">Taking return</label>
+                                    </div>
                                 </div>
                                 
-
                                 <div class="form-buttons">
                                     <button type="button" class="discard">Descartar</button>
-                                    <button type="submit" class="add-product">Agregar Proveedor</button>
+                                    <button type="submit" class="add-supplier">Agregar Proveedor</button>
                                 </div>
                             </form>
                         </div>

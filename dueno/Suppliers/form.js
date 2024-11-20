@@ -1,4 +1,4 @@
-const modal = document.getElementById("productModal");
+const modal = document.getElementById("supplierModal");
 const addProductBtn = document.getElementById("addProductBtn");
 const closeModal = document.querySelector(".close");
 
