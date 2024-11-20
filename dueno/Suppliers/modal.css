@@ -1,0 +1,138 @@
+.modal {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 8px;
+    width: 500px;
+    max-width: 90%;
+    padding: 20px 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 15px; 
+    right: 20px; 
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #333;
+    background: none;
+    border: none;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+}
+
+.image-upload {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.image-upload a {
+    color: #007bff;
+}
+
+.image-placeholder {
+    border: 2px dashed #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    color: #aaa;
+    margin-top: 15px;
+}
+
+form label {
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: block;
+    font-size: 14px;
+    color: #333;
+}
+
+form input, form select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+button {
+    cursor: pointer;
+}
+
+button.discard {
+    background-color: #f8f9fa;
+    color: #333;
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button.discard:hover {
+    background-color: #e9ecef;
+}
+
+button.add-supplier {
+    background-color: #007bff;
+    color: #fff;
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button.add-supplier:hover {
+    background-color: #0056b3;
+}
+
+.radio-buttons {
+    display: flex;
+    flex-direction: row; 
+    gap: 90px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center; 
+    font-size: 14px;
+    gap: 20px;
+    color: #333;
+    white-space: nowrap;
+}
+
+.radio-option input[type="radio"] {
+    accent-color: #007bff; 
+    margin: 0; 
+}
+
+.form-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 15px;
+}

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory</title>
+    <link rel="stylesheet" href="./Inventory.css">
+    <link rel="stylesheet" href="./modal.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <span class="material-icons">dashboard</span> KANBAN
+            <a href="/main_menu.html"></a>
+        </div>
+        <nav class="menu">
+            <a href="./../Dashboard/Dashboard.html" class="menu-item"><span class="material-icons">home</span> Panel</a>
+            <a href="./../Inventory/Inventory.html" class="menu-item"><span class="material-icons">inventory</span> Inventario</a>
+            <a href="./../Reports/Reports.html" class="menu-item"><span class="material-icons">bar_chart</span> Reportes</a>
+            <a href="./../Suppliers/Suppliers.html" class="menu-item"><span class="material-icons">people</span> Proveedores</a>
+            <a href="./../Orders/Orders.html" class="menu-item"><span class="material-icons">shopping_cart</span> Ordenes</a>
+            <a href="./../ManageStore/ManageStore.html" class="menu-item"><span class="material-icons">store</span> Administrar Tiendas</a>
+        </nav>
+        <nav class="options">
+            <a href="#" class="menu-item"><span class="material-icons">settings</span> Ajustes</a>
+            <button class="log-button"><span class="material-icons">logout</span> Cerrar Sesión</button>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <header class="header">
+            <div class="search-container">
+                <span class="material-icons">search</span>
+                <input type="text" class="search-bar" placeholder="Buscar producto, proveedor, orden">
+            </div>
+            <div class="header-icons">
+                <button class="icon-button"><span class="material-icons">notifications</span></button>
+                <button class="icon-button"><span class="material-icons">account_circle</span></button>
+            </div>
+        </header>
+
+        <div class="content">
+            <!-- Sección superior -->
+            <div class="frame overall-inventory">
+                <h2>Inventario General</h2>
+                <div class="overview-cards">
+                    <div class="card">Categorias<br><span>14</span><br><small>Last 7 days</small></div>
+                    <div class="card">Productos Totales<br><span>868</span><br><small>Last 7 days</small></div>
+                    <div class="card">Mas Vendidos<br><span>₹25000</span><br><small>Revenue</small></div>
+                    <div class="card">Bajo Stock<br><span>12</span><br><small>Ordenado</small></div>
+                </div>
+            </div>
+        
+            <!-- Sección inferior -->
+            <div class="frame products-table">
+                <div class="products-header">
+                    <h2>Productos</h2>
+                    <div class="table-actions">
+                        <button id="addProductBtn">Agregar Producto</button>
+                        <button>Filtros</button>
+                        <button>Download</button>
+                    </div>
+                </div>
+
+                <!-- Formulario Modal -->
+                <div id="productModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>Nuevo Producto</h2>
+                        <div class="form-container">
+                            <div class="image-upload">
+                                <div class="image-placeholder">
+                                    Drag image here <br> or <a href="#">Browse image</a>
+                                </div>
+                            </div>
+                            <form>
+                                <label>Nombre del Producto</label>
+                                <input type="text" placeholder="Enter product name">
+
+                                <label>Producto ID</label>
+                                <input type="text" placeholder="Enter product ID">
+
+                                <label>Categoria</label>
+                                <select>
+                                    <option>Categoria 1</option>
+                                    <option>Category 2</option>
+                                    <option>Category 3</option>
+                                </select>
+
+                                <label>Precio de Compra</label>
+                                <input type="number" placeholder="Enter buying price">
+
+                                <label>Cantidad</label>
+                                <input type="number" placeholder="Enter product quantity">
+
+                                <label>Unidad</label>
+                                <input type="text" placeholder="Enter product unit">
+
+                                <label>Fecha de Caducidad</label>
+                                <input type="date">
+
+                                <label>Threshold Value</label>
+                                <input type="text" placeholder="Enter threshold value">
+
+                                <div class="form-buttons">
+                                    <button type="button" class="discard">Descartar</button>
+                                    <button type="submit" class="add-product">Agregar Producto</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Productos</th>
+                            <th>Precio de Compra</th>
+                            <th>Cantidad</th>
+                            <th>Valor</th>
+                            <th>Fecha de Caducidad</th>
+                            <th>Disponibilidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Maggi</td>
+                            <td>₹430</td>
+                            <td>43 Packets</td>
+                            <td>12 Packets</td>
+                            <td>11/12/22</td>
+                            <td><span class="in-stock">In-stock</span></td>
+                        </tr>
+                        <tr>
+                            <td>Bru</td>
+                            <td>₹257</td>
+                            <td>22 Packets</td>
+                            <td>12 Packets</td>
+                            <td>21/12/22</td>
+                            <td><span class="out-stock">Out of stock</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <button>Anterior</button>
+                    <span>Page 1 of 10</span>
+                    <button>Siguiente</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./form.js"></script>
+</body>
+</html>
