@@ -68,46 +68,48 @@
                     <div class="modal-content">
                         <span class="close">&times;</span>
                         <h2>Nuevo Producto</h2>
+
                         <div class="form-container">
                             <div class="image-upload">
-                                <div class="image-placeholder">
+                                <div class="image-placeholder" id="image-placeholder">
                                     Drag image here <br> or <a href="#">Browse image</a>
                                 </div>
-                            </div>
-                            <form>
+                                <input type="file" id="image-input" name="imagen" accept="image/*" style="display: none;">
+                            </div>                            
+                            <form enctype="multipart/form-data">
                                 <label>Nombre del Producto</label>
-                                <input type="text" placeholder="Enter product name">
-
+                                <input type="text" name="nombre" placeholder="Enter product name" required>
+                            
                                 <label>Producto ID</label>
-                                <input type="text" placeholder="Enter product ID">
-
+                                <input type="text" name="productId" placeholder="Enter product ID" required>
+                            
                                 <label>Categoria</label>
-                                <select>
+                                <select name="categoria">
                                     <option>Categoria 1</option>
                                     <option>Category 2</option>
                                     <option>Category 3</option>
                                 </select>
-
+                            
                                 <label>Precio de Compra</label>
-                                <input type="number" placeholder="Enter buying price">
-
+                                <input type="number" name="precioCompra" placeholder="Enter buying price" required>
+                            
                                 <label>Cantidad</label>
-                                <input type="number" placeholder="Enter product quantity">
-
+                                <input type="number" name="cantidad" placeholder="Enter product quantity" required>
+                            
                                 <label>Unidad</label>
-                                <input type="text" placeholder="Enter product unit">
-
+                                <input type="text" name="unidad" placeholder="Enter product unit" required>
+                            
                                 <label>Fecha de Caducidad</label>
-                                <input type="date">
-
+                                <input type="date" name="fechaCaducidad" required>
+                            
                                 <label>Threshold Value</label>
-                                <input type="text" placeholder="Enter threshold value">
-
+                                <input type="number" name="valorUmbral" placeholder="Enter threshold value" required>
+                            
                                 <div class="form-buttons">
                                     <button type="button" class="discard">Descartar</button>
                                     <button type="submit" class="add-product">Agregar Producto</button>
                                 </div>
-                            </form>
+                            </form>                            
                         </div>
                     </div>
                 </div>
@@ -118,28 +120,13 @@
                             <th>Productos</th>
                             <th>Precio de Compra</th>
                             <th>Cantidad</th>
-                            <th>Valor</th>
+                            <th>Valor Umbral</th>
                             <th>Fecha de Caducidad</th>
                             <th>Disponibilidad</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Maggi</td>
-                            <td>₹430</td>
-                            <td>43 Packets</td>
-                            <td>12 Packets</td>
-                            <td>11/12/22</td>
-                            <td><span class="in-stock">In-stock</span></td>
-                        </tr>
-                        <tr>
-                            <td>Bru</td>
-                            <td>₹257</td>
-                            <td>22 Packets</td>
-                            <td>12 Packets</td>
-                            <td>21/12/22</td>
-                            <td><span class="out-stock">Out of stock</span></td>
-                        </tr>
+
                     </tbody>
                 </table>
                 <div class="pagination">

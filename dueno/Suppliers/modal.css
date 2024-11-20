@@ -1,93 +1,129 @@
 .modal {
-    display: none;
+    display: none; /* Oculto por defecto */
     justify-content: center;
     align-items: center;
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%; /* Ocupa todo el ancho */
+    height: 100%; /* Ocupa toda la altura */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
     z-index: 1000;
 }
 
 .modal-content {
-    background: #fff;
-    border-radius: 8px;
-    width: 500px;
-    max-width: 90%;
-    padding: 20px 30px;
+    background-color: white; /* Fondo del formulario */
+    padding: 20px;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 90%; /* Se adapta al tamaño de la pantalla */
+    max-width: 500px; /* Límite máximo para pantallas grandes */
+    max-height: 90%; /* Altura máxima para evitar desbordamientos */
+    overflow-y: auto; /* Scroll en caso de contenido largo */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: relative;
 }
 
-.modal-content .close {
-    position: absolute;
-    top: 15px; 
-    right: 20px; 
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    color: #333;
-    background: none;
-    border: none;
-}
-
-.form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px; 
-}
-
 .image-upload {
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.image-upload a {
-    color: #007bff;
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .image-placeholder {
+    width: 120px;
+    height: 120px;
     border: 2px dashed #ddd;
-    padding: 20px;
-    border-radius: 8px;
+    border-radius: 50%;
     background-color: #f9f9f9;
-    color: #aaa;
-    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden; /* Para asegurar que la imagen respete el borde circular */
+    cursor: pointer;
+}
+
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* La imagen se ajusta sin deformarse */
+    position: absolute; /* Se superpone al texto/icono */
+}
+
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #333;
+}
+
+.image-placeholder p {
+    margin: 10px 0 0 0;
+    font-size: 14px;
+    color: #007bff; /* Color azul para el enlace */
+    text-decoration: underline; /* Estilo de enlace */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el texto */
 }
 
 form label {
-    font-weight: bold;
-    margin-bottom: 10px;
-    display: block;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+form input,
+form select {
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.radio-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.radio-buttons label {
     font-size: 14px;
     color: #333;
 }
 
-form input, form select {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-    margin-bottom: 20px;
+.radio-buttons input[type="radio"] {
+    accent-color: #007bff;
 }
 
-button {
-    cursor: pointer;
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 button.discard {
     background-color: #f8f9fa;
     color: #333;
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
     border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
+    border-radius: 6px;
+    padding: 10px 20px;
 }
 
 button.discard:hover {
@@ -96,43 +132,12 @@ button.discard:hover {
 
 button.add-supplier {
     background-color: #007bff;
-    color: #fff;
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
 }
 
 button.add-supplier:hover {
     background-color: #0056b3;
-}
-
-.radio-buttons {
-    display: flex;
-    flex-direction: row; 
-    gap: 90px;
-}
-
-.radio-option {
-    display: flex;
-    align-items: center; 
-    font-size: 14px;
-    gap: 20px;
-    color: #333;
-    white-space: nowrap;
-}
-
-.radio-option input[type="radio"] {
-    accent-color: #007bff; 
-    margin: 0; 
-}
-
-.form-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 15px;
-    margin-top: 15px;
 }

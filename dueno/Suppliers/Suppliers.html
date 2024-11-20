@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reportes</title>
+    <title>Proveedores</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="./Suppliers.css">
     <link rel="stylesheet" href="./modal.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
 </head>
 <body>
     <div class="sidebar">
@@ -28,7 +27,7 @@
             <button class="log-button"><span class="material-icons">logout</span> Cerrar Sesión</button>
         </nav>
     </div>
-    
+
     <div class="main-content">
         <header class="header">
             <div class="search-container">
@@ -56,50 +55,52 @@
                     <div class="modal-content">
                         <span class="close">&times;</span>
                         <h2>Nuevo Proveedor</h2>
-                        <div class="form-container">
+                        <form id="supplierForm" enctype="multipart/form-data">
                             <div class="image-upload">
-                                <div class="image-placeholder">
-                                    Drag image here <br> or <a href="#">Browse image</a>
+                                <div class="image-placeholder" id="imagePlaceholder">
+                                    <span class="material-icons" id="placeholderIcon">person</span>
+                                    <p id="placeholderText">Drag image here or <a href="#" id="browseImageLink">Browse image</a></p>
                                 </div>
+                                <input type="file" id="imageInput" name="imagen" accept="image/*" style="display: none;">                                
+                            </div>                            
+
+                            <label>Supplier Name</label>
+                            <input type="text" id="supplierName" name="nombreProveedor" placeholder="Enter supplier name" required>
+
+                            <label>Product</label>
+                            <input type="text" id="productName" name="producto" placeholder="Enter product" required>
+
+                            <label>Category</label>
+                            <select id="category" name="categoria" required>
+                                <option value="" disabled selected>Select product category</option>
+                                <option value="electronics">Electronics</option>
+                                <option value="clothing">Clothing</option>
+                                <option value="food">Food</option>
+                            </select>
+
+                            <label>Buying Price</label>
+                            <input type="number" id="buyingPrice" name="precioCompra" placeholder="Enter buying price" required>
+
+                            <label>Contact Number</label>
+                            <input type="text" id="contactNumber" name="numeroContacto" placeholder="Enter contact number" required>
+
+                            <label>Email</label>
+                            <input type="email" id="email" name="correo" placeholder="Enter email" required>
+
+                            <label>Type</label>
+                            <div class="radio-buttons">
+                                <input type="radio" id="not-taking-return" name="Tipo" value="No acepta devolucion" required>
+                                <label for="not-taking-return">Not taking return</label>
+
+                                <input type="radio" id="taking-return" name="Tipo" value="Acepta devolucion" required>
+                                <label for="taking-return">Taking return</label>
                             </div>
-                            <form>
-                                <label>Nombre del Proveedor</label>
-                                <input type="text" placeholder="Enter supplier name">
 
-                                <label>Producto</label>
-                                <input type="text" placeholder="Enter product ID">
-
-                                <label>Categoria</label>
-                                <select>
-                                    <option>Categoria 1</option>
-                                    <option>Category 2</option>
-                                    <option>Category 3</option>
-                                </select>
-
-                                <label>Precio de Compra</label>
-                                <input type="number" placeholder="Enter buying price">
-
-                                <label>Numero de Contacto</label>
-                                <input type="text" placeholder="Enter contact number">
-
-                                <label>Tipo</label>
-                                <div class="radio-buttons">
-                                    <div class="radio-option">
-                                        <input type="radio" id="not-taking-return" name="type" value="not-taking-return">
-                                        <label for="not-taking-return">Not taking return</label>    
-                                    </div>
-                                    <div class="radio-option">
-                                        <input type="radio" id="taking-return" name="type" value="taking-return">
-                                        <label for="taking-return">Taking return</label>
-                                    </div>
-                                </div>
-                                
-                                <div class="form-buttons">
-                                    <button type="button" class="discard">Descartar</button>
-                                    <button type="submit" class="add-supplier">Agregar Proveedor</button>
-                                </div>
-                            </form>
-                        </div>
+                            <div class="form-buttons">
+                                <button type="button" class="discard">Discard</button>
+                                <button type="submit" class="add-supplier">Add Supplier</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
@@ -115,31 +116,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Richard Martin</td>
-                            <td>Kit Kat</td>
-                            <td>7687764556</td>
-                            <td>richard@gmail.com</td>
-                            <td class="status taking-return">Taking Return</td>
-                            <td>13</td>
-                        </tr>
-                        <tr>
-                            <td>Tom Homan</td>
-                            <td>Maaza</td>
-                            <td>9867545368</td>
-                            <td>tomhoman@gmail.com</td>
-                            <td class="status taking-return">Taking Return</td>
-                            <td>-</td>
-                        </tr>
-                        <tr>
-                            <td>Veandir</td>
-                            <td>Dairy Milk</td>
-                            <td>9867545566</td>
-                            <td>veandir@gmail.com</td>
-                            <td class="status not-taking-return">Not Taking Return</td>
-                            <td>-</td>
-                        </tr>
-                        <!-- Más filas -->
+                        <!-- Las filas se llenarán dinámicamente -->
                     </tbody>
                 </table>
                 <div class="pagination">
@@ -150,6 +127,7 @@
             </div>
         </div>
     </div>
+
     <script src="./form.js"></script>
 </body>
 </html>

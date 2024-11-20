@@ -38,24 +38,24 @@ h2 {
     gap: 20px;
 }
 
-.image-upload {
-    border: 2px dashed #ccc;
-    border-radius: 8px;
+.image-placeholder {
+    border: 2px dashed #ccc; 
+    border-radius: 50%; 
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 180px;
-    height: 400px; 
-    padding: 20px;
-    color: #666;
+    width: 120px; 
+    height: 120px; 
+    padding: 10px; 
+    color: #666; 
     text-align: center;
-    font-size: 14px;
+    font-size: 12px; 
     margin: 0 auto;
-}
-
-.image-upload a {
-    color: #007bff;
+    background-color: #f9f9f9;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
 }
 
 form {
