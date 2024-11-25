@@ -42,13 +42,140 @@
             </div>
         </header>
         <div class="content">
-            <div class="frame sales-overview">Resumen</div>
-            <div class="frame inventory-summary">
-                <p class="me-3">Categoria Mejor Vendida</p>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Producto">Agregar Producto</button>
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#Filtros">Agregar Producto</button>
-                <button type="button" class="btn">Historial de Pedidos</button>
+            
+            
+            <div class="container-custom mt-5 p-4 shadow-sm rounded border">
+                <h4 class="mb-4 text-center">Órdenes Generales</h4>
+                <div class="row text-center gy-4">
+                    <!-- Total de Órdenes -->
+                    <div class="col-lg-3 col-md-6 col-sm-12 info-box">
+                        <p class="fw-bold text-primary">Órdenes Totales</p>
+                        <h4 id="tot-orders">--</h4>
+                        <p class="text-muted">Últimos 7 días</p>
+                    </div>
+                    <!-- Total Recibido -->
+                    <div class="col-lg-3 col-md-6 col-sm-12 info-box">
+                        <p class="fw-bold text-warning">Total Recibido</p>
+                        <div class="d-flex justify-content-around">
+                            <div class="text-center">
+                                <h4 id="tot-received">--</h4>
+                                <p class="text-muted">Últimos 7 días</p>
+                            </div>
+                            <div class="text-center">
+                                <h4 id="cost-received">$---.--</h4>
+                                <p class="text-muted">Ingreso</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Total Devuelto -->
+                    <div class="col-lg-3 col-md-6 col-sm-12 info-box">
+                        <p class="fw-bold text-purple">Total Devuelto</p>
+                        <div class="d-flex justify-content-around">
+                            <div class="text-center">
+                                <h4 id="tot-returned">--</h4>
+                                <p class="text-muted">Últimos 7 días</p>
+                            </div>
+                            <div class="text-center">
+                                <h4 id="cost-returned">$---.--</h4>
+                                <p class="text-muted">Costo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- En Camino -->
+                    <div class="col-lg-3 col-md-6 col-sm-12 info-box">
+                        <p class="fw-bold text-danger">En Camino</p>
+                        <div class="d-flex justify-content-around">
+                            <div class="text-center">
+                                <h4 id="ord-on-way">--</h4>
+                                <p class="text-muted">Ordenados</p>
+                            </div>
+                            <div class="text-center">
+                                <h4 id="cost-on-way">$---.--</h4>
+                                <p class="text-muted">Costo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+            
+
+            <div class="card shadow-sm rounded border">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <p class="mb-0 fw-bold">Categoría Mejor Vendida</p>
+                    <div class="d-flex align-items-center gap-2">
+                        <!-- Botón de agregar producto -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Producto">Agregar Producto</button>
+            
+                        <!-- Dropdown para filtros -->
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="dropdownFiltro" aria-expanded="false">
+                                <span class="material-icons">filter_list</span> Filtros
+                            </button>
+                            <div class="dropdown-menu p-4" aria-labelledby="dropdownFiltro" style="min-width: 300px;">
+                                <form>
+                                    <h4>Estatus</h4>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="confirmed">
+                                        <label class="form-check-label" for="confirmed">Confirmado</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="returned">
+                                        <label class="form-check-label" for="returned">Devuelto</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="delayed">
+                                        <label class="form-check-label" for="delayed">Retrasado</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="out">
+                                        <label class="form-check-label" for="out">En Entrega</label>
+                                    </div>
+                                    <h4>Otros</h4>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="availability" id="cantmtl">
+                                        <label class="form-check-label" for="cantmtl">Cantidad (Mayor a menor)</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="availability" id="cantltm">
+                                        <label class="form-check-label" for="cantltm">Cantidad (Menor a mayor)</label>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+            
+                        <!-- Botón historial -->
+                        <button type="button" class="btn btn-outline-secondary">Ordenar Historial</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-borderless align-middle">
+                            <thead>
+                                <tr class="text-center fw-bold text-secondary border-bottom pb-2">
+                                    <th>Productos</th>
+                                    <th>Valor de Orden</th>
+                                    <th>Cantidad</th>
+                                    <th>Orden ID</th>
+                                    <th>Entrega Aproximada</th>
+                                    <th>Estatus</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="text-center">
+                                    <td id="ord-product">--</td>
+                                    <td id="ord-order-val">$---.--</td>
+                                    <td id="ord-quantity">--</td>
+                                    <td id="ord-id">-----</td>
+                                    <td id="ord-exp-delivery">--/--/----</td>
+                                    <td id="ord-status">----</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            
             
             <div class="modal fade" id="Producto" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -104,87 +231,6 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Descartar</button>
                             <button type="button" class="btn btn-primary">Agregar Producto</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal fade" id="Filtros" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Filtros</h5>
-                            
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <h5>Estatus</h5>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="confirmed">
-                                    <label class="form-check-label">
-                                        Confirmado
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="returned">
-                                    <label class="form-check-label">
-                                        Devuelto
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="delayed">
-                                    <label class="form-check-label">
-                                        Retrasado
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="out">
-                                    <label class="form-check-label">
-                                        En Entrega
-                                    </label>
-                                </div>
-                                <h5>Otros</h5>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="availability" id="cantmtl">
-                                    <label class="form-check-label">
-                                        Cantidad (Mayor a menor)
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="availability" id="cantltm">
-                                    <label class="form-check-label">
-                                        Cantidad (Menor a mayor)
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="availability" id="valmtl">
-                                    <label class="form-check-label">
-                                        Valor (Mayor a menor)
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="availability" id="valltm">
-                                    <label class="form-check-label">
-                                        Valor (Menor a mayor)
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="availability" id="antmtl">
-                                    <label class="form-check-label">
-                                        Antigüedad (Mayor a menor)
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="availability" id="antltm">
-                                    <label class="form-check-label">
-                                        Antigüedad (Menor a mayor)
-                                    </label>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Descartar</button>
-                            <button type="button" class="btn btn-primary">Aceptar</button>
                         </div>
                     </div>
                 </div>
