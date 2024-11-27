@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 <body>
     <div class="sidebar">
@@ -26,7 +26,7 @@
         </nav>
         <nav class="options">
             <a href="#" class="menu-item"><span class="material-icons">settings</span> Ajustes</a>
-            <button class="log-button"><span class="material-icons">logout</span> Cerrar Sesión</button>
+            <button class="log-button" onclick="logout()"><span class="material-icons">logout</span> Cerrar Sesión</button>
         </nav>
     </div>
     
@@ -42,12 +42,164 @@
             </div>
         </header>
         <div class="content">
-            <div class="frame sales-overview">Resumen</div>
-            <div class="frame inventory-summary">
-                <p class="me-3">Categoria Mejor Vendida</p>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Producto">Agregar Producto</button>
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#Filtros">Agregar Producto</button>
-                <button type="button" class="btn">Historial de Pedidos</button>
+            
+            
+            <div class="container-custom p-4 shadow-sm rounded border">
+                <p class="mb-0 fw-bold">Órdenes Generales</p>
+                <div class="row text-center gy-4">
+                    <!-- Total de Órdenes -->
+                    <div class="col-lg-3 col-md-6 col-sm-12 info-box">
+                        <p class="fw-bold text-primary">Órdenes Totales</p>
+                        <h4 id="tot-orders">--</h4>
+                        <p class="text-muted">Últimos 7 días</p>
+                    </div>
+                    <!-- Total Recibido -->
+                    <div class="col-lg-3 col-md-6 col-sm-12 info-box">
+                        <p class="fw-bold text-warning">Total Recibido</p>
+                        <div class="d-flex justify-content-around">
+                            <div class="text-center">
+                                <h4 id="tot-received">--</h4>
+                                <p class="text-muted">Últimos 7 días</p>
+                            </div>
+                            <div class="text-center">
+                                <h4 id="cost-received">$---.--</h4>
+                                <p class="text-muted">Ingreso</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Total Devuelto -->
+                    <div class="col-lg-3 col-md-6 col-sm-12 info-box">
+                        <p class="fw-bold text-purple">Total Devuelto</p>
+                        <div class="d-flex justify-content-around">
+                            <div class="text-center">
+                                <h4 id="tot-returned">--</h4>
+                                <p class="text-muted">Últimos 7 días</p>
+                            </div>
+                            <div class="text-center">
+                                <h4 id="cost-returned">$---.--</h4>
+                                <p class="text-muted">Costo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- En Camino -->
+                    <div class="col-lg-3 col-md-6 col-sm-12 info-box">
+                        <p class="fw-bold text-danger">En Camino</p>
+                        <div class="d-flex justify-content-around">
+                            <div class="text-center">
+                                <h4 id="ord-on-way">--</h4>
+                                <p class="text-muted">Ordenados</p>
+                            </div>
+                            <div class="text-center">
+                                <h4 id="cost-on-way">$---.--</h4>
+                                <p class="text-muted">Costo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="card shadow-sm rounded border">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <p class="mb-0 fw-bold">Órdenes</p>
+                    <div class="d-flex align-items-center gap-2">
+                        <!-- Botón de agregar producto -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Producto">Agregar Producto</button>
+            
+                        <!-- Botón para abrir el modal de filtros -->
+                        <button type="button" class="btn btn-outline-secondary" id="openFiltersModal">
+                            <span class="material-icons">filter_list</span> Filtros
+                        </button>
+
+                        <!-- Modal de Filtros -->
+                        <div id="filtersModal" class="modal" tabindex="-1" aria-labelledby="filtersModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered">
+                                <div class="modal-content rounded-3">
+                                    <div class="modal-header bg-light rounded-top">
+                                        <h5 class="modal-title" id="filtersModalLabel">Filtros</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form id="filtersForm">
+                                            <div class="mb-3">
+                                                <label for="filterType" class="form-label">Tipo de proveedor:</label>
+                                                <select id="filterType" name="filterType" class="form-select rounded-3">
+                                                    <option value="" selected>Todos</option>
+                                                    <option value="Confirmado">Confirmado</option>
+                                                    <option value="Devuelto">Devuelto</option>
+                                                    <option value="Retrasado">Retrasado</option>
+                                                    <option value="En camino">En camino</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="sortField" class="form-label">Ordenar por:</label>
+                                                <select id="sortField" name="sortField" class="form-select rounded-3">
+                                                    <option value="cantmtl" selected>Cantidad</option>
+                                                    <option value="valmtl">Valor</option>
+                                                    <option value="antmtl">Antigüedad</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-3">
+                                                <label for="sortOrder" class="form-label">Orden:</label>
+                                                <select id="sortOrder" name="sortOrder" class="form-select rounded-3">
+                                                    <option value="asc" selected>Ascendente</option>
+                                                    <option value="desc">Descendente</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="d-flex justify-content-between">
+                                                <button type="button" class="btn btn-outline-secondary rounded-3" data-bs-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-primary rounded-3">Aplicar Filtros</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+           
+                        <!-- Botón historial -->
+                        <button type="button" class="historial btn btn-outline-secondary">Historial de Ordenes</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-borderless align-middle">
+                            <thead>
+                                <tr class="text-center fw-bold text-secondary border-bottom pb-2">
+                                    <th>Productos</th>
+                                    <th>Valor de Orden</th>
+                                    <th>Cantidad</th>
+                                    <th>Orden ID</th>
+                                    <th>Entrega Aproximada</th>
+                                    <th>Estatus</th>
+                                </tr>
+                            </thead>                            
+                            <tbody>
+                                <!-- Aquí se mostrarán las filas de las órdenes -->
+                                <tr class="text-center">
+                                    <td id="ord-product">--</td>
+                                    <td id="ord-order-val">$---.--</td>
+                                    <td id="ord-quantity">--</td>
+                                    <td id="ord-id">-----</td>
+                                    <td id="ord-exp-delivery">--/--/----</td>
+                                    <td id="ord-status">----</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div id="pagination" class="d-flex justify-content-center align-items-center mt-3">
+                            <button id="prevButton" class="btn btn-outline-secondary">Anterior</button>
+                    
+                            <span class="mx-3">
+                                Página <span id="currentPage">1</span> de <span id="totalPages">1</span>
+                            </span>
+                        
+                            <button id="nextButton" class="btn btn-outline-secondary">Siguiente</button>
+                        </div>  
+                    </div>                  
+                    </div>
+                </div>                
             </div>
             
             <div class="modal fade" id="Producto" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -70,26 +222,27 @@
                                 <div class="mb-3">
                                     <label for="category" class="form-label">Categoría</label>
                                     <select class="form-select" id="category">
-                                        <option value="1"></option>
-                                        <option value="2"></option>
-                                        <option value="3"></option>
+                                        <option value="Frutas">Frutas</option>
+                                        <option value="Bebidas">Bebidas</option>
+                                        <option value="Frituras">Frituras</option>
+                                        <option value="Galletas">Galletas</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="orderValue" class="form-label">Valor de la Orden</label>
-                                    <input type="number" class="form-control" id="orderValue" placeholder="Ingresa el Valor de la Orden">
+                                    <input type="text" class="form-control" id="orderValue" placeholder="Ingresa el Valor de la Orden">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="orderValue" class="form-label">Cantidad</label>
-                                    <input type="number" class="form-control" id="orderValue" placeholder="Cantidad">
+                                    <label for="cantidad" class="form-label">Cantidad</label>
+                                    <input type="text" class="form-control" id="cantidad" placeholder="Cantidad">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="orderValue" class="form-label">Unidad del Producto</label>
-                                    <input type="text" class="form-control" id="orderValue" placeholder="Ingresa la Unidad del Producto">
+                                    <label for="unidad" class="form-label">Unidad del Producto</label>
+                                    <input type="text" class="form-control" id="unidad" placeholder="Ingresa la Unidad del Producto">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="orderValue" class="form-label">Precio de Compra</label>
-                                    <input type="number" class="form-control" id="orderValue" placeholder="Ingresa el Precio de la Cuenta">
+                                    <label for="precioPieza" class="form-label">Precio por pieza</label>
+                                    <input type="number" class="form-control" id="precioPieza" placeholder="Ingresa el Precio de la Cuenta">
                                 </div>
                                 <div class="mb-3">
                                     <label for="deliveryDate" class="form-label">Fecha de la entrega</label>
@@ -108,90 +261,9 @@
                     </div>
                 </div>
             </div>
-
-            <div class="modal fade" id="Filtros" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Filtros</h5>
-                            
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <h5>Estatus</h5>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="confirmed">
-                                    <label class="form-check-label">
-                                        Confirmado
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="returned">
-                                    <label class="form-check-label">
-                                        Devuelto
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="delayed">
-                                    <label class="form-check-label">
-                                        Retrasado
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="out">
-                                    <label class="form-check-label">
-                                        En Entrega
-                                    </label>
-                                </div>
-                                <h5>Otros</h5>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="availability" id="cantmtl">
-                                    <label class="form-check-label">
-                                        Cantidad (Mayor a menor)
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="availability" id="cantltm">
-                                    <label class="form-check-label">
-                                        Cantidad (Menor a mayor)
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="availability" id="valmtl">
-                                    <label class="form-check-label">
-                                        Valor (Mayor a menor)
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="availability" id="valltm">
-                                    <label class="form-check-label">
-                                        Valor (Menor a mayor)
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="availability" id="antmtl">
-                                    <label class="form-check-label">
-                                        Antigüedad (Mayor a menor)
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="availability" id="antltm">
-                                    <label class="form-check-label">
-                                        Antigüedad (Menor a mayor)
-                                    </label>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Descartar</button>
-                            <button type="button" class="btn btn-primary">Aceptar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         
         </div>
     </div>
-    
+    <script src="./Orders.js"></script>
 </body>
 </html>

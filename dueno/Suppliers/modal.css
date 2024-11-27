@@ -118,7 +118,7 @@ form select {
     gap: 10px;
 }
 
-button.discard {
+button.Cancelar {
     background-color: #f8f9fa;
     color: #333;
     border: 1px solid #ddd;
@@ -126,7 +126,7 @@ button.discard {
     padding: 10px 20px;
 }
 
-button.discard:hover {
+button.Cancelar:hover {
     background-color: #e9ecef;
 }
 

@@ -10,16 +10,6 @@ body {
     height: 100vh;
 }
 
-.sidebar {
-    width: 280px;
-    height: 650px;
-    background-color: #f4f4f9;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 5px;
-}
-
 .logo {
     font-size: 24px;
     font-weight: bold;
@@ -29,15 +19,26 @@ body {
     padding-bottom: 20px;
 }
 
+.sidebar {
+    width: 280px;
+    height: 100vh; /* Ajustar al 100% del alto de la pantalla */
+    background-color: #f4f4f9;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #ddd;
+}
+
 .menu {
     display: flex;
     flex-direction: column;
-    padding-bottom: 120px;
+    gap: 10px; /* Espacio entre los elementos */
 }
 
 .options {
     display: flex;
     flex-direction: column;
+    margin-top: auto; /* Mueve este contenedor al final de la barra lateral */
 }
 
 .menu-item {
@@ -55,12 +56,6 @@ body {
     background-color: #e0e0e0;
     border-radius: 5px;
 }
-
-/* .menu-item.active {
-    color: black;
-    border-radius: 5px;
-    font-weight: bold;
-} */
 
 .log-button {
     background: none;
@@ -177,3 +172,125 @@ body {
     grid-row: 3 / 4;
     height: 200px;
 }
+/*--------------------------------------------*/
+.sales-overview {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    height: auto;
+    padding: 1rem;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sales-overview .card-body {
+    padding: 1rem;
+}
+
+.sales-overview .card-title {
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+.sales-overview .row {
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sales-overview .row .col {
+    flex: 1;
+    padding: 0 0.5rem;
+}
+
+.sales-overview .small {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+.sales-overview h6 {
+    font-weight: 600;
+    margin-top: 0.25rem;
+    color: #333;
+    font-size: 1rem;
+}
+
+.text-purple {
+    color: #6f42c1; /* Púrpura Bootstrap */
+}
+
+.text-a {
+    color: #323c55
+}
+/*--------------------------------------------*/
+.inventory-summary {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    padding: 1rem;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.inventory-summary .card-title {
+    font-weight: bold;
+    color: #333;
+}
+
+.btn-link {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #007bff;
+}
+
+.btn-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.table th {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #6c757d;
+}
+
+.table td {
+    font-size: 0.875rem;
+}
+
+.text-success {
+    color: #28a745;
+    font-weight: bold;
+}
+/*--------------------------------------------*/
+.purchase-overview {
+    grid-column: 1 / 3;
+    grid-row: 2 / 3;
+    height: auto;
+    padding: 1rem;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.purchase-overview .card-title {
+    font-weight: bold;
+    color: #333;
+}
+
+#grafica {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+/*--------------------------------------------*/

@@ -10,16 +10,6 @@ body {
     height: 100vh;
 }
 
-.sidebar {
-    width: 280px;
-    height: 650px;
-    background-color: #f4f4f9;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 5px;
-}
-
 .logo {
     font-size: 24px;
     font-weight: bold;
@@ -29,15 +19,26 @@ body {
     padding-bottom: 20px;
 }
 
+.sidebar {
+    width: 280px;
+    height: 100vh; /* Ajustar al 100% del alto de la pantalla */
+    background-color: #f4f4f9;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #ddd;
+}
+
 .menu {
     display: flex;
     flex-direction: column;
-    padding-bottom: 120px;
+    gap: 10px; /* Espacio entre los elementos */
 }
 
 .options {
     display: flex;
     flex-direction: column;
+    margin-top: auto; /* Mueve este contenedor al final de la barra lateral */
 }
 
 .menu-item {
@@ -213,4 +214,128 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+#Filtros {
+    background-color: white; /* Fondo blanco */
+    color: black; /* Texto negro */
+    border: 1px solid black; /* Opcional: un borde negro */
+    padding: 10px 15px; /* Espaciado interno para que se vea mejor */
+    font-size: 16px; /* Tamaño de la fuente */
+    border-radius: 5px; /* Opcional: bordes redondeados */
+  }
+  
+  #Filtros:hover {
+    background-color: #f0f0f0; /* Opcional: fondo gris claro al pasar el ratón */
+    color: black; /* Mantiene el texto negro al pasar el ratón */
+  }
+  
+#Download {
+    background-color: white; /* Fondo blanco */
+    color: black; /* Texto negro */
+    border: 1px solid black; /* Opcional: un borde negro */
+    padding: 10px 15px; /* Espaciado interno para que se vea mejor */
+    font-size: 16px; /* Tamaño de la fuente */
+    border-radius: 5px; /* Opcional: bordes redondeados */
+}
+
+ #Download:hover {
+    background-color: #f0f0f0; /* Opcional: fondo gris claro al pasar el ratón */
+    color: black; /* Mantiene el texto negro al pasar el ratón */
+ }
+
+#Atras {
+    background-color: white; /* Fondo blanco */
+    color: black; /* Texto negro */
+    border: 1px solid black; /* Opcional: un borde negro */
+    padding: 10px 15px; /* Espaciado interno para que se vea mejor */
+    font-size: 16px; /* Tamaño de la fuente */
+    border-radius: 5px; /* Opcional: bordes redondeados */
+}
+
+ #Atras:hover {
+    background-color: #f0f0f0; /* Opcional: fondo gris claro al pasar el ratón */
+    color: black; /* Mantiene el texto negro al pasar el ratón */
+ }
+
+#Siguiente {
+    background-color: white; /* Fondo blanco */
+    color: black; /* Texto negro */
+    border: 1px solid black; /* Opcional: un borde negro */
+    padding: 10px 15px; /* Espaciado interno para que se vea mejor */
+    font-size: 16px; /* Tamaño de la fuente */
+    border-radius: 5px; /* Opcional: bordes redondeados */
+}
+
+ #Siguiente:hover {
+    background-color: #f0f0f0; /* Opcional: fondo gris claro al pasar el ratón */
+    color: black; /* Mantiene el texto negro al pasar el ratón */
+ }
+
+
+.pagination button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+/* Estilizar botones del modal */
+#filtersModal .form-buttons button {
+    border: none;
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Botón de "Aplicar Filtros" */
+#filtersModal .form-buttons .apply-filters {
+    background-color: #007bff; /* Azul */
+    color: white;
+}
+
+#filtersModal .form-buttons .apply-filters:hover {
+    background-color: #0056b3; /* Azul más oscuro en hover */
+    transform: scale(1.05); /* Efecto de zoom */
+}
+
+/* Botón de "Cancelar" */
+#filtersModal .form-buttons .discard {
+    background-color: #f0f0f0; /* Gris claro */
+    color: #333;
+}
+
+#filtersModal .form-buttons .discard:hover {
+    background-color: #e0e0e0; /* Gris más oscuro en hover */
+    transform: scale(1.05); /* Efecto de zoom */
+}
+
+/* Estilizar campos de formulario */
+#filtersModal form select {
+    border: 1px solid #ccc;
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    width: 100%; /* Asegurar que ocupe todo el ancho del contenedor */
+    box-sizing: border-box; /* Incluir padding en el ancho */
+}
+
+#filtersModal form select:focus {
+    outline: none;
+    border-color: #007bff; /* Azul en focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra azul */
+}
+
+/* Espaciado entre los elementos */
+#filtersModal form label {
+    margin-bottom: 5px;
+    display: block;
+    font-weight: bold;
+}
+
+#filtersModal form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }

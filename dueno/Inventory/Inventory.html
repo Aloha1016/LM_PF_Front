@@ -68,15 +68,17 @@
                     <div class="modal-content">
                         <span class="close">&times;</span>
                         <h2>Nuevo Producto</h2>
-
+                
                         <div class="form-container">
-                            <div class="image-upload">
-                                <div class="image-placeholder" id="image-placeholder">
-                                    Drag image here <br> or <a href="#">Browse image</a>
+                            <form id="productForm" action="/api/producto/crearproducto" method="POST" enctype="multipart/form-data">
+                                
+                                <div class="image-upload">
+                                    <div class="image-placeholder" id="image-placeholder">
+                                        Drag image here <br> or <a href="#">Browse image</a>
+                                    </div>
+                                    <input type="file" name="imagen" accept="image/*" style="display: none;">
                                 </div>
-                                <input type="file" id="image-input" name="imagen" accept="image/*" style="display: none;">
-                            </div>                            
-                            <form enctype="multipart/form-data">
+                
                                 <label>Nombre del Producto</label>
                                 <input type="text" name="nombre" placeholder="Enter product name" required>
                             
@@ -85,9 +87,9 @@
                             
                                 <label>Categoria</label>
                                 <select name="categoria">
-                                    <option>Categoria 1</option>
-                                    <option>Category 2</option>
-                                    <option>Category 3</option>
+                                    <option value="electronics">Electronics</option>
+                                    <option value="clothing">Clothing</option>
+                                    <option value="food">Food</option>
                                 </select>
                             
                                 <label>Precio de Compra</label>
@@ -103,7 +105,7 @@
                                 <input type="date" name="fechaCaducidad" required>
                             
                                 <label>Threshold Value</label>
-                                <input type="number" name="valorUmbral" placeholder="Enter threshold value" required>
+                                <input type="number" name="valorUmbral" placeholder="Valor Umbral" required>
                             
                                 <div class="form-buttons">
                                     <button type="button" class="discard">Descartar</button>

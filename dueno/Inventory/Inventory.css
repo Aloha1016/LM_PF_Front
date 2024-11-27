@@ -10,16 +10,6 @@ body {
     height: 100vh;
 }
 
-.sidebar {
-    width: 280px;
-    height: 650px;
-    background-color: #f4f4f9;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 5px;
-}
-
 .logo {
     font-size: 24px;
     font-weight: bold;
@@ -29,15 +19,26 @@ body {
     padding-bottom: 20px;
 }
 
+.sidebar {
+    width: 280px;
+    height: 100vh; /* Ajustar al 100% del alto de la pantalla */
+    background-color: #f4f4f9;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #ddd;
+}
+
 .menu {
     display: flex;
     flex-direction: column;
-    padding-bottom: 120px;
+    gap: 10px; /* Espacio entre los elementos */
 }
 
 .options {
     display: flex;
     flex-direction: column;
+    margin-top: auto; /* Mueve este contenedor al final de la barra lateral */
 }
 
 .menu-item {

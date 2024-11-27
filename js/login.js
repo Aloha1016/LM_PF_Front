@@ -19,7 +19,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             // Guarda el token en el almacenamiento local
             localStorage.setItem('token', result.token);
             // Redirige a mainDueno.html
-            window.location.href = './dueno/mainDueno.html';
+            window.location.href = './dueno/Dashboard/Dashboard.html';
         } else {
             alert(result.error || 'Error al iniciar sesión');
         }

@@ -10,14 +10,56 @@ body {
     height: 100vh;
 }
 
-.sidebar {
-    width: 280px;
-    height: 650px;
-    background-color: #f4f4f9;
-    padding: 25px;
+.header {
+    padding: 20px;
+    background-color: #fff;
     display: flex;
-    flex-direction: column;
-    border-radius: 5px;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.card img {
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.store-details {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.store-details p {
+    margin-bottom: 10px;
+}
+
+.btn {
+    border-radius: 8px;
+}
+
+.col-md-8 {
+    display: flex;
+    justify-content: space-between; /* Espacio entre detalles y botón */
+    align-items: center; /* Centra verticalmente el botón */
+}
+
+.text-center button {
+    transform: translateY(0); /* Asegura que el botón esté completamente centrado */
 }
 
 .logo {
@@ -29,15 +71,26 @@ body {
     padding-bottom: 20px;
 }
 
+.sidebar {
+    width: 280px;
+    height: 100vh; /* Ajustar al 100% del alto de la pantalla */
+    background-color: #f4f4f9;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #ddd;
+}
+
 .menu {
     display: flex;
     flex-direction: column;
-    padding-bottom: 120px;
+    gap: 10px; /* Espacio entre los elementos */
 }
 
 .options {
     display: flex;
     flex-direction: column;
+    margin-top: auto; /* Mueve este contenedor al final de la barra lateral */
 }
 
 .menu-item {
@@ -55,12 +108,6 @@ body {
     background-color: #e0e0e0;
     border-radius: 5px;
 }
-
-/* .menu-item.active {
-    color: black;
-    border-radius: 5px;
-    font-weight: bold;
-} */
 
 .log-button {
     background: none;
@@ -84,15 +131,6 @@ body {
 .main-content {
     flex-grow: 1;
     background-color: #ffffff;
-}
-
-.header {
-    padding: 20px;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .search-container {
@@ -139,9 +177,8 @@ body {
 
 .content {
     display: grid;
-    grid-template-columns: 2fr 1fr; 
-    grid-template-rows: auto auto auto; 
-    gap: 20px; 
+    grid-template-columns: 1fr;
+    gap: 20px;
     padding: 20px;
 }
 
@@ -166,3 +203,11 @@ body {
     grid-row: 3 / 4;
     height: 200px;
 }
+
+/* Limita el tamaño de las imágenes */
+img.img-fluid {
+    width: 300px; /* Establece el ancho fijo */
+    height: 200px; /* Establece la altura fija */
+    object-fit: cover; /* Ajusta la imagen para cubrir el área sin distorsionarse */
+}
+

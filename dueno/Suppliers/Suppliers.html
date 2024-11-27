@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="./Suppliers.css">
     <link rel="stylesheet" href="./modal.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
     <div class="sidebar">
@@ -24,7 +27,7 @@
         </nav>
         <nav class="options">
             <a href="#" class="menu-item"><span class="material-icons">settings</span> Ajustes</a>
-            <button class="log-button"><span class="material-icons">logout</span> Cerrar Sesión</button>
+            <button class="log-button" onclick="logout()"><span class="material-icons">logout</span> Cerrar Sesión</button>
         </nav>
     </div>
 
@@ -45,8 +48,8 @@
                     <h2>Proveedores</h2>
                     <div class="table-actions">
                         <button id="addProductBtn">Agregar Proveedor</button>
-                        <button>Filtros</button>
-                        <button>Download all</button>
+                        <button id="Filtros" data-bs-target="#Filtros"><i class="bi bi-filter"></i> Filtros</button>
+                        <button id="Download">Descargar Registros</button>
                     </div>
                 </div>
 
@@ -59,46 +62,80 @@
                             <div class="image-upload">
                                 <div class="image-placeholder" id="imagePlaceholder">
                                     <span class="material-icons" id="placeholderIcon">person</span>
-                                    <p id="placeholderText">Drag image here or <a href="#" id="browseImageLink">Browse image</a></p>
+                                    <p id="placeholderText">Dibujar imagen o <a href="#" id="browseImageLink">Buscar imagen</a></p>
                                 </div>
                                 <input type="file" id="imageInput" name="imagen" accept="image/*" style="display: none;">                                
                             </div>                            
 
-                            <label>Supplier Name</label>
-                            <input type="text" id="supplierName" name="nombreProveedor" placeholder="Enter supplier name" required>
+                            <label>Nombre del proveedor:</label>
+                            <input type="text" id="supplierName" name="nombreProveedor" placeholder="Nombre del proveedor" required>
 
-                            <label>Product</label>
-                            <input type="text" id="productName" name="producto" placeholder="Enter product" required>
+                            <label>Producto:</label>
+                            <input type="text" id="productName" name="producto" placeholder="Producto" required>
 
-                            <label>Category</label>
+                            <label>Categoria</label>
                             <select id="category" name="categoria" required>
-                                <option value="" disabled selected>Select product category</option>
-                                <option value="electronics">Electronics</option>
-                                <option value="clothing">Clothing</option>
-                                <option value="food">Food</option>
+                                <option value="" disabled selected>Selecciona la categoría</option>
+                                <option value="Frutas">Frutas</option>
+                                <option value="Bebidas">Bebidas</option>
+                                <option value="Frituras">Frituras</option>
+                                <option value="Galletas">Galletas</option>
                             </select>
 
-                            <label>Buying Price</label>
-                            <input type="number" id="buyingPrice" name="precioCompra" placeholder="Enter buying price" required>
+                            <label>Precio por pieza:</label>
+                            <input type="text" id="buyingPrice" name="precioCompra" placeholder="Precio por pieza" required>
 
-                            <label>Contact Number</label>
-                            <input type="text" id="contactNumber" name="numeroContacto" placeholder="Enter contact number" required>
+                            <label>Numero de contacto:</label>
+                            <input type="text" id="contactNumber" name="numeroContacto" placeholder="Numero de contacto" required>
 
-                            <label>Email</label>
-                            <input type="email" id="email" name="correo" placeholder="Enter email" required>
+                            <label>Correo:</label>
+                            <input type="email" id="email" name="correo" placeholder="Correo" required>
 
-                            <label>Type</label>
+                            <label>Tipo:</label>
                             <div class="radio-buttons">
                                 <input type="radio" id="not-taking-return" name="Tipo" value="No acepta devolucion" required>
-                                <label for="not-taking-return">Not taking return</label>
+                                <label for="not-taking-return">No acepta devolucion</label>
 
                                 <input type="radio" id="taking-return" name="Tipo" value="Acepta devolucion" required>
-                                <label for="taking-return">Taking return</label>
+                                <label for="taking-return">Acepta devolucion</label>
                             </div>
 
                             <div class="form-buttons">
-                                <button type="button" class="discard">Discard</button>
-                                <button type="submit" class="add-supplier">Add Supplier</button>
+                                <button type="button" class="Cancelar">Descartar</button>
+                                <button type="submit" class="add-supplier">Agregar Proveedor</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Modal de Filtros -->
+                <div id="filtersModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>Filtros</h2>
+                        <form id="filtersForm">
+                            <label for="filterType">Tipo de proveedor:</label>
+                            <select id="filterType" name="filterType">
+                                <option value="" selected>Todos</option>
+                                <option value="taking-return">Acepta Devolución</option>
+                                <option value="not-taking-return">No Acepta Devolución</option>
+                            </select>
+
+                            <label for="sortField">Ordenar por:</label>
+                            <select id="sortField" name="sortField">
+                                <option value="nombreProveedor" selected>Nombre del Proveedor</option>
+                                <option value="numeroContacto">Número de Contacto</option>
+                            </select>
+
+                            <label for="sortOrder">Orden:</label>
+                            <select id="sortOrder" name="sortOrder">
+                                <option value="asc" selected>Ascendente</option>
+                                <option value="desc">Descendente</option>
+                            </select>
+
+                            <div class="form-buttons">
+                                <button type="button" class="discard">Cancelar</button>
+                                <button type="submit" class="apply-filters">Aplicar Filtros</button>
                             </div>
                         </form>
                     </div>
@@ -120,9 +157,9 @@
                     </tbody>
                 </table>
                 <div class="pagination">
-                    <button>Anterior</button>
-                    <span>Page 1 of 10</span>
-                    <button>Siguiente</button>
+                    <button id="Atras">Anterior</button>
+                    <span>Page 1 of 1</span>
+                    <button id="Siguiente">Siguiente</button>
                 </div>
             </div>
         </div>
