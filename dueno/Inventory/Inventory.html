@@ -39,16 +39,61 @@
                 <button class="icon-button"><span class="material-icons">account_circle</span></button>
             </div>
         </header>
-
+        
         <div class="content">
             <!-- Sección superior -->
             <div class="frame overall-inventory">
                 <h2>Inventario General</h2>
                 <div class="overview-cards">
-                    <div class="card">Categorias<br><span>14</span><br><small>Last 7 days</small></div>
-                    <div class="card">Productos Totales<br><span>868</span><br><small>Last 7 days</small></div>
-                    <div class="card">Mas Vendidos<br><span>₹25000</span><br><small>Revenue</small></div>
-                    <div class="card">Bajo Stock<br><span>12</span><br><small>Ordenado</small></div>
+                    <div class="card">
+                        <p class="title categories">Categorias</p>
+                        <p class="values">14</p>
+                        <div class="subtitles">
+                            <p class="subtitle">Ultimos 7 dias</p>    
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="card total-products">
+                        <p class="title">Total Products</p>
+                        <div class="values">
+                            <p class="value">868</p>
+                            <p class="value">$25000</p>
+                        </div>
+                        <div class="subtitles">
+                            <p class="subtitle">Ultimos 7 dias</p>
+                            <p class="subtitle">Ingresos</p>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="card">
+                        <p class="title top-selling">Más Vendidos</p>
+                        <div class="values-top">
+                            <p class="value">5</p>
+                            <p class="value">$2500</p>
+                        </div>
+                        <div class="subtitles">
+                            <p class="subtitle">Ultimos 7 dias</p>
+                            <p class="subtitle">Costo</p>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="card">
+                        <p class="title low-stock">Bajo Stock</p>
+                        <div class="values">
+                            <p class="value">12</p>
+                            <p class="value">3</p>
+                        </div>
+                        <div class="subtitles">
+                            <p class="subtitle">Ordenado</p>
+                            <p class="subtitle">Sin stock</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         
@@ -76,10 +121,10 @@
                             </div>
                             <form>
                                 <label>Nombre del Producto</label>
-                                <input type="text" placeholder="Enter product name">
+                                <input type="text" placeholder="Nombre del Producto">
 
                                 <label>Producto ID</label>
-                                <input type="text" placeholder="Enter product ID">
+                                <input type="text" placeholder="Producto ID">
 
                                 <label>Categoria</label>
                                 <select>
@@ -89,19 +134,19 @@
                                 </select>
 
                                 <label>Precio de Compra</label>
-                                <input type="number" placeholder="Enter buying price">
+                                <input type="number" placeholder="Precio de Compra">
 
                                 <label>Cantidad</label>
-                                <input type="number" placeholder="Enter product quantity">
+                                <input type="number" placeholder="Cantidad de Producto">
 
                                 <label>Unidad</label>
-                                <input type="text" placeholder="Enter product unit">
+                                <input type="text" placeholder="Unidad del Producto">
 
                                 <label>Fecha de Caducidad</label>
                                 <input type="date">
 
                                 <label>Threshold Value</label>
-                                <input type="text" placeholder="Enter threshold value">
+                                <input type="text" placeholder="Valor">
 
                                 <div class="form-buttons">
                                     <button type="button" class="discard">Descartar</button>

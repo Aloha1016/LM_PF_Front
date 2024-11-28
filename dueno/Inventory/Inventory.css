@@ -145,30 +145,83 @@ body {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.overview-cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 20px;
-}
-
-.card {
-    text-align: center;
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.card span {
+.overall-inventory h2 {
     font-size: 24px;
+    font-weight: bold;
     color: #333;
 }
 
-.card small {
-    color: #666;
+.overview-cards {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 4 tarjetas + 3 divisores */
+    align-items: center;
+    gap: 10px;
+}
+
+.card {
+    text-align: left;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    gap: 10px;
+    height: auto;
+}
+
+.card .title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff922b;
+    margin-bottom: 5px;
+}
+
+.card .values {
+    display: flex;
+    gap: 70px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.card .values-top {
+    display: flex;
+    gap: 95px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.card .subtitles {
+    display: flex;
+    gap: 20px;
     font-size: 14px;
+    color: #666;
+}
+
+.title.categories {
+    color: #007bff;
+}
+
+.title.total-products {
+    color: #ff922b;
+}
+
+.title.top-selling {
+    color: #8a2be2;
+}
+
+.title.low-stock  {
+    color: #e63946;
+}
+
+/* Estilo para las divisorias */
+.divider {
+    width: 1px;
+    height: 60%;
+    background-color: #ddd;
+    justify-self: center;
 }
 
 .products-header {

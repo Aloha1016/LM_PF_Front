@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Details</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./Details.css">
+    <link rel="stylesheet" href="./modal.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <span class="material-icons">dashboard</span> KANBAN
+            <a href="/main_menu.html"></a>
+        </div>
+        <nav class="menu">
+            <a href="./../Dashboard/Dashboard.html" class="menu-item"><span class="material-icons">home</span> Panel</a>
+            <a href="./../Inventory/Inventory.html" class="menu-item"><span class="material-icons">inventory</span> Inventario</a>
+            <a href="./../Reports/Reports.html" class="menu-item"><span class="material-icons">bar_chart</span> Reportes</a>
+            <a href="./../Suppliers/Suppliers.html" class="menu-item"><span class="material-icons">people</span> Proveedores</a>
+            <a href="./../Orders/Orders.html" class="menu-item"><span class="material-icons">shopping_cart</span> Ordenes</a>
+            <a href="./../ManageStore/ManageStore.html" class="menu-item"><span class="material-icons">store</span> Administrar Tiendas</a>
+        </nav>
+        <nav class="options">
+            <a href="#" class="menu-item"><span class="material-icons">settings</span> Ajustes</a>
+            <button class="log-button"><span class="material-icons">logout</span> Cerrar Sesión</button>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <header class="header">
+            <div class="search-container">
+                <span class="material-icons">search</span>
+                <input type="text" class="search-bar" placeholder="Buscar producto, proveedor, orden">
+            </div>
+            <div class="header-icons">
+                <button class="icon-button"><span class="material-icons">notifications</span></button>
+                <button class="icon-button"><span class="material-icons">account_circle</span></button>
+            </div>
+        </header>
+
+        <div class="content">
+            <div class="single-frame">
+
+                <div class="products-header">
+                    <h2><span>Producto</span></h2>
+                    <div class="table-actions">
+                        <button id="addProductBtn" class="header-btn">
+                            <span class="material-icons">edit</span>Editar
+                        </button>
+                        <button class="header-btn" >Download</button>
+                    </div>
+                </div>
+
+                <!-- Formulario Modal -->
+                <div id="productModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>Editar Producto</h2>
+                        <div class="form-container">
+                            <div class="image-upload">
+                                <div class="image-placeholder">
+                                    Drag image here <br> or <a href="#">Browse image</a>
+                                </div>
+                            </div>
+                            <form>
+                                <label>Nombre del Producto</label>
+                                <input type="text" placeholder="Nombre del Producto">
+
+                                <label>Producto ID</label>
+                                <input type="text" placeholder="Producto ID">
+
+                                <label>Categoria</label>
+                                <select>
+                                    <option>Categoria 1</option>
+                                    <option>Category 2</option>
+                                    <option>Category 3</option>
+                                </select>
+
+                                <label>Precio de Compra</label>
+                                <input type="number" placeholder="Precio de Compra">
+
+                                <label>Cantidad</label>
+                                <input type="number" placeholder="Cantidad de Producto">
+
+                                <label>Unidad</label>
+                                <input type="text" placeholder="Unidad del Producto">
+
+                                <label>Fecha de Caducidad</label>
+                                <input type="date">
+
+                                <label>Threshold Value</label>
+                                <input type="text" placeholder="Valor">
+
+                                <div class="form-buttons">
+                                    <button type="button" class="discard">Descartar</button>
+                                    <button type="submit" class="add-product">Actualizar Producto</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pestañas -->
+                <div class="tabs">
+                    <button class="tab-btn" data-target="Overview active">General</button>
+                    <button class="tab-btn" data-target="Purchases">Compras</button>
+                    <button class="tab-btn" data-target="Adjustments">Ajustes</button>
+                    <button class="tab-btn" data-target="History">Historial</button>
+                    <div class="tab-indicator"></div>
+                </div>
+
+                <!-- Contenido de Pestañas -->
+                <div id="overview" class="tab-content active">
+                    <div class="details-container">
+
+                        <!-- Detalles primarios y del proveedor -->
+                        <div class="details-left">
+                            <div class="primary-details">
+                                <h3>Detalles Principales</h3>
+                                <p>Nombre del Producto: <strong>Maggi</strong></p>
+                                <p>Producto ID: <strong>456567</strong></p>
+                                <p> Categoria del Producto: <strong>Instant food</strong></p>
+                                <p>Fecha de Caducidad: <strong>13/4/23</strong></p>
+                                <p>Valor: <strong>12</strong></p>
+                            </div>
+                            <div class="supplier-details">
+                                <h3>Detalles del proveedor</h3>
+                                <p>Nombre del Proveedor: <strong>Ronald Martin</strong></p>
+                                <p>Numero de Contacto: <strong>98789 86757</strong></p>
+                            </div>
+                        </div>
+                    
+                        <!-- Imagen del producto y detalles de stock -->
+                        <div class="details-right">
+                            <div class="product-image">
+                                <img src="https://via.placeholder.com/150" alt="Product Image">
+                            </div>
+                            <div class="stock-info">
+                                <p>Stock Inicial: <strong>40</strong></p>
+                                <p>Stock Restante : <strong>34</strong></p>
+                                <p>En camino: <strong>15</strong></p>
+                                <p>Threshold value: <strong>12</strong></p>
+                            </div>
+                        </div>
+
+                        <!-- Tabla de ubicaciones de stock -->
+                        <div class="stock-locations">
+                            <h3>Ubicaciones de stock</h3>
+                            <table class="stock-table">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre de Tienda</th>
+                                        <th>Inventario</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Sulur Branch</td>
+                                        <td><span>15</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Singanallur Branch</td>
+                                        <td><span>19</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Singanallur Branch</td>
+                                        <td><span>19</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div id="purchases" class="tab-content">
+                    <h3>Historial de Compras</h3>
+                    <p>Contenido relacionado con compras aparecerá aquí.</p>
+                </div>
+        
+                <div id="adjustments" class="tab-content">
+                    <h3>Ajustes del Producto</h3>
+                    <p>Contenido relacionado con ajustes aparecerá aquí.</p>
+                </div>
+        
+                <div id="history" class="tab-content">
+                    <h3>Historial del Producto</h3>
+                    <p>Contenido relacionado con el historial aparecerá aquí.</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="./Details.js"></script>
+    <script src="./form.js"></script>
+</body>
+</html>
