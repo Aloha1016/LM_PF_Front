@@ -291,6 +291,12 @@ body {
     background-color: #f8f9fa;
     border-radius: 8px;
     margin-top: 1rem;
+    width: 100%;
+}
+
+#VerTodo1 .modal-body {
+    max-height: none;  /* Eliminar el límite de altura */
+    overflow: visible; /* Permitir que el contenido se muestre sin restricciones */
 }
 
 /*--------------------------------------------*/

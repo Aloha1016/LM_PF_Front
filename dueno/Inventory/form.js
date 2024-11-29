@@ -110,7 +110,13 @@ async function loadProducts() {
                         <td>${producto.cantidad}</td>
                         <td>${producto.valorUmbral}</td>
                         <td>${producto.fechaCaducidad}</td>
-                        <td><span class="${producto.estado === 'Agotado' ? 'out-stock' : 'in-stock'}">${producto.estado}</span></td>
+                        <td><span class="${
+                            producto.estado === 'Agotado'
+                                ? 'out-stock'
+                                : producto.estado === 'Poca disponibilidad'
+                                ? 'low-stock'
+                                : 'in-stock'
+                        }">${producto.estado}</span></td>
                     </tr>
                 `;
                 tableBody.innerHTML += row;

@@ -10,6 +10,16 @@ body {
     height: 100vh;
 }
 
+.sidebar {
+    width: 280px;
+    height: 100vh;
+    background-color: #f4f4f9;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
 .logo {
     font-size: 24px;
     font-weight: bold;
@@ -19,26 +29,15 @@ body {
     padding-bottom: 20px;
 }
 
-.sidebar {
-    width: 280px;
-    height: 100vh; /* Ajustar al 100% del alto de la pantalla */
-    background-color: #f4f4f9;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    border-right: 1px solid #ddd;
-}
-
 .menu {
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Espacio entre los elementos */
+    padding-bottom: 120px;
 }
 
 .options {
     display: flex;
     flex-direction: column;
-    margin-top: auto; /* Mueve este contenedor al final de la barra lateral */
 }
 
 .menu-item {
@@ -56,6 +55,12 @@ body {
     background-color: #e0e0e0;
     border-radius: 5px;
 }
+
+/* .menu-item.active {
+    color: black;
+    border-radius: 5px;
+    font-weight: bold;
+} */
 
 .log-button {
     background: none;
@@ -150,46 +155,540 @@ body {
     color: #333;
 }
 
+.divider {
+    width: 1px;
+    background-color: #ddd;
+    height: 40px;
+    margin: 0 20px;
+}
+
+/* Sales overview*/
 .sales-overview {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
-    height: 120px;
+    height: auto;
+    padding: 20px;
 }
 
+.sales-overview h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.sales-overview-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.overview-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.overview-item span {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.overview-item .overview-value {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.overview-item .overview-label {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}
+
+/* Inventory summary*/
 .inventory-summary {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
+    height: auto;
+    padding: 20px;
 }
 
+.inventory-summary h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.inventory-summary-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inventory-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.inventory-item span {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.inventory-item .inventory-value {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    text-align: center;
+}
+
+.inventory-item .inventory-label {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    text-align: center;
+}
+
+/* Purchase Overview */
 .purchase-overview {
     grid-column: 1 / 2;
     grid-row: 2 / 3;
-    height: 120px;
+    height: auto;
+    padding: 20px;
 }
+
+.purchase-overview h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.purchase-overview-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.purchase-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.purchase-item span {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.purchase-item .purchase-value {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    text-align: center;
+}
+
+.purchase-item .purchase-label {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    text-align: center;
+}
+
+/* Product Summary*/
 
 .product-summary {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
+    height: auto;
+    padding: 20px;
 }
+
+.product-summary h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.product-summary-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.product-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.product-item span {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.product-item .product-value {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+    text-align: center;
+}
+
+.product-item .product-label {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+    text-align: center;
+}
+
+/* Sales Purchase*/
 
 .sales-purchase {
     grid-column: 1 / 2;
     grid-row: 3 / 4;
-    height: 200px;
+    height: auto;
+    padding: 20px;
 }
 
+
+/* Order Sumary*/
 .order-summary {
     grid-column: 2 / 3;
     grid-row: 3 / 4;
 }
 
+/* Top Selling Stock*/
 .top-selling-stock {
     grid-column: 1 / 2;
     grid-row: 4 / 5;
-    height: 200px;
+    height: auto;
+    padding: 20px;
 }
+
+.top-selling-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.top-selling-header h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.top-selling-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.top-selling-table th,
+.top-selling-table td {
+    text-align: left;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.top-selling-table th {
+    font-weight: bold;
+    color: #555;
+    background-color: #f9f9f9;
+}
+
+.top-selling-table tr:nth-child(even) {
+    background-color: #f4f4f9;
+}
+
+.top-selling-table tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Low quantity stock*/
 
 .low-quantity-stock {
     grid-column: 2 / 3;
     grid-row: 4 / 5;
+    height: auto;
+    padding: 20px;
 }
+
+.low-stock-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.low-stock-header h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.low-stock-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.low-stock-table tbody tr {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.low-stock-table td {
+    vertical-align: middle;
+    padding: 5px 15px;
+}
+
+.product-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.product-name {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.remaining-quantity {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+}
+
+.low-stock-label {
+    background-color: rgba(255, 146, 43, 0.2);
+    color: #961919;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+}
+
+/* Botones Ver Todo */
+.see-all-btn {
+    background-color: transparent;
+    color: #007bff;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.see-all-btn:hover {
+    color: #0056b3;
+}
+
+/* Modals */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 800px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: auto;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.modal-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.modal-table th,
+.modal-table td {
+    text-align: left;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.modal-table th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+    color: #555;
+}
+
+.modal-table tr:nth-child(even) {
+    background-color: #f4f4f9;
+}
+
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: #0056b3;
+}
+
+/* -- HERE -- */
+/* Tabla dentro del modal */
+.modal-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+/* Encabezados de la tabla */
+.modal-content th {
+    background-color: #4c6ef5;
+    color: white;
+    padding: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Filas de la tabla */
+.modal-content td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Alternar colores en filas */
+.modal-content tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.modal-content tr:nth-child(odd) {
+    background-color: #fff;
+}
+
+/* Hover sobre filas */
+.modal-content tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+/* Estilo adicional para celdas */
+.modal-content td {
+    font-size: 14px;
+    color: #333;
+}
+
+/* Botones */
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #555;
+    cursor: pointer;
+    float: right;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+/* Fondo oscuro que cubre toda la pantalla */
+.modal {
+    display: none; /* Inicialmente oculto */
+    position: fixed; /* Fija el modal en la pantalla */
+    top: 0;
+    left: 0;
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Alto completo */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    z-index: 9999; /* Asegúrate de que esté sobre otros elementos */
+}
+
+/* Estilo para el contenido del modal */
+.modal-content {
+    position: absolute;
+    top: 50%; /* Posiciona el contenido en el centro vertical */
+    left: 50%; /* Posiciona el contenido en el centro horizontal */
+    transform: translate(-50%, -50%); /* Ajusta el contenido para centrarlo perfectamente */
+    background-color: white; /* Fondo blanco para el contenido */
+    padding: 20px;
+    border-radius: 8px; /* Bordes redondeados */
+    width: 60%; /* Ajusta el ancho según lo que desees */
+    max-width: 600px; /* Ancho máximo */
+}
+
+/* Estilo para el botón de cierre */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+

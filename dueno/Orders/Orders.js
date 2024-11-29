@@ -28,7 +28,7 @@ document.querySelector('#Producto .btn-primary').addEventListener('click', async
 
         const result = await response.json();
         if (response.ok) {
-            alert('Orden creada exitosamente');
+            alert(result.alerta ? result.alerta : 'Orden creada exitosamente');
             location.reload(); // Refresca la tabla de órdenes
         } else {
             alert(`Error: ${result.error}`);

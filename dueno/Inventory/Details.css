@@ -1,0 +1,385 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    width: 280px;
+    height: 650px;
+    background-color: #f4f4f9;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 120px;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item {
+    font-size: 15px;
+    color: #333;
+    padding: 15px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s;
+}
+
+.menu-item:hover {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+}
+
+.log-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 15px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s;
+}
+
+.log-button:hover {
+    background-color: #e0e0e0;
+    border-radius: 5px;
+}
+
+.main-content {
+    flex-grow: 1;
+    background-color: #ffffff;
+}
+
+.header {
+    padding: 20px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-container {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 10px 10px 10px 40px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-container .material-icons {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #262424;
+    font-size: 16px;
+}
+
+.header-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+.icon-button:hover {
+    color: #666;
+}
+
+.content {
+    display: grid;
+    grid-template-rows: auto auto;  
+    padding: 20px;
+}
+
+.single-frame {
+    background-color: #f4f4f9;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow: auto;
+    height: 700px;
+}
+
+.products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.products-header h2 {
+    margin: 0;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.table-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.table-actions button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.table-actions button:hover {
+    background-color: #0056b3;
+}
+
+.header-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.header-btn .material-icons {
+    font-size: 16px;
+}
+
+/* Tabs */
+.tabs {
+    position: relative;
+    display: flex;
+    gap: 15px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    padding: 10px 10px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.3s ease;
+}
+
+.tab-btn:hover {
+    color: #333;
+}
+
+.tab-btn.active {
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Línea indicadora animada */
+.tab-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 80px; 
+    background-color: #007bff;
+    transition: all 0.3s ease;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Contenedor principal de detalles */
+.details-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    gap: 20px;
+}
+
+.details-left, .details-right {
+    flex: 1 1 40%;
+}
+
+.stock-locations {
+    width: 100%; 
+}
+
+/* Sección izquierda (detalles primarios y del proveedor) */
+.details-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.primary-details {
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.supplier-details {
+    padding-top: 30px;
+    padding-left: 10px;
+    border-radius: 8px;
+}
+
+.primary-details h3, .supplier-details h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+.primary-details p, .supplier-details p {
+    margin: 10px 0;
+    font-size: 14px;
+    color: #666;
+    display: grid;
+    grid-template-columns: 150px auto; 
+    column-gap: 30px; 
+    align-items: center;
+}
+
+/* Aumenta el espaciado entre las etiquetas y valores */
+.primary-details strong, .supplier-details strong {
+    font-weight: bold;
+    color: #333;
+    margin-left: 100px; 
+}
+
+/* Sección derecha (imagen del producto y detalles de stock) */
+.details-right {
+    display: flex;
+    flex-direction: column;
+}
+
+.product-image img {
+    width: 150px;
+    height: auto;
+    border: 1px dashed #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 95px;
+}
+
+.stock-info {
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    text-align: left;
+}
+
+.stock-info p {
+    margin: 15px 0;
+    font-size: 14px;
+    color: #666;
+    display: grid;
+    grid-template-columns: 150px auto; 
+    column-gap: 10px; 
+    align-items: center;
+}
+
+.stock-info strong {
+    font-weight: bold;
+    color: #333;
+    margin-left: 100px; 
+}
+
+/* Tabla de ubicaciones de stock */
+.stock-locations h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.stock-table {
+    width: 100%;
+    max-width: 800px;
+    border-collapse: collapse;
+    font-size: 14px;
+    color: #333;
+}
+
+.stock-table th {
+    text-align: left;
+    padding: 12px 15px;
+    background-color: #eaeaea;
+    font-weight: bold;
+    color: #555;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.stock-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.stock-table td span{
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Aumenta el espacio entre columnas */
+.stock-table td:first-child {
+    width: 80%; /* Ajusta el ancho de la primera columna */
+}
+
+.stock-table td:last-child {
+    text-align: center; /* Alinea la segunda columna a la derecha */
+}

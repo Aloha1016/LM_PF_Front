@@ -232,6 +232,11 @@ body {
     font-weight: bold;
 }
 
+.low-stock {
+    color: orange;
+    font-weight: bold;
+}
+
 .pagination {
     display: flex;
     justify-content: space-between;

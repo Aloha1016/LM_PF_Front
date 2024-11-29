@@ -6,7 +6,7 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="./Dashboard.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="sidebar">
@@ -40,15 +40,233 @@
             </div>
         </header>
         <div class="content">
-            <div class="frame sales-overview">Descripción General de Ventas</div>
-            <div class="frame inventory-summary">Resumen de Inventario</div>
-            <div class="frame purchase-overview">Descripción General de Compras</div>
-            <div class="frame product-summary">Resumen de Productos</div>
-            <div class="frame sales-purchase">Ventas y Compras</div>
-            <div class="frame order-summary">Resumen de Ordenes</div>
-            <div class="frame top-selling-stock">Existencias Más Vendidas</div>
-            <div class="frame low-quantity-stock">Existencias con Baja Disponibilidad</div>
+            <!-- Sales Overview -->
+            <div class="frame sales-overview">
+                <h3>Descripción General de Ventas</h3>
+                <div class="sales-overview-content">
+                    <div class="overview-item">
+                        <span class="material-icons" style="color: #4c6ef5; background: rgba(76, 110, 245, 0.2);">percent</span>
+                        <div>
+                            <p id="sales-today" class="overview-value">$---.--</p>
+                            <p class="overview-label">Ventas</p>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="overview-item">
+                        <span class="material-icons" style="color: #845ef7; background: rgba(132, 94, 247, 0.2);">trending_up</span>
+                        <div>
+                            <p id="revenue" class="overview-value">$---.--</p>
+                            <p class="overview-label">Ingresos</p>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="overview-item">
+                        <span class="material-icons" style="color: #ff922b; background: rgba(255, 146, 43, 0.2);">bar_chart</span>
+                        <div>
+                            <p id="total-profit" class="overview-value">$---.--</p>
+                            <p class="overview-label">Ganancia</p>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="overview-item">
+                        <span class="material-icons" style="color: #20c997; background: rgba(32, 201, 151, 0.2);">account_balance</span>
+                        <div>
+                            <p id="sales" class="overview-value">$---.--</p>
+                            <p class="overview-label">Costo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Inventory Summary -->
+            <div class="frame inventory-summary">
+                <h3>Resumen de Inventario</h3>
+                <div class="inventory-summary-content">
+                    <div class="inventory-item">
+                        <span class="material-icons" style="color: #ff922b; background: rgba(255, 146, 43, 0.2);">inventory</span>
+                        <div>
+                            <p id="existe" class="inventory-value">---</p>
+                            <p class="inventory-label">En Existencias</p>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="inventory-item">
+                        <span class="material-icons" style="color: #845ef7; background: rgba(132, 94, 247, 0.2);">local_shipping</span>
+                        <div>
+                            <p id="recibir" class="inventory-value">---</p>
+                            <p class="inventory-label">Por Recibir</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Purchase Overview -->
+            <div class="frame purchase-overview">
+                <h3>Descripción General de Compras</h3>
+                <div class="purchase-overview-content">
+                    <div class="purchase-item">
+                        <span class="material-icons" style="color: #4c6ef5; background: rgba(76, 110, 245, 0.2);">shopping_bag</span>
+                        <div>
+                            <p id="compras" class="purchase-value">--</p>
+                            <p class="purchase-label">Compras</p>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="purchase-item">
+                        <span class="material-icons" style="color: #20c997; background: rgba(32, 201, 151, 0.2);">account_balance</span>
+                        <div>
+                            <p id="costo" class="purchase-value">$---.--</p>
+                            <p class="purchase-label">Costo</p>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="purchase-item">
+                        <span class="material-icons" style="color: #845ef7; background: rgba(132, 94, 247, 0.2);">cancel</span>
+                        <div>
+                            <p id="canceladas" class="purchase-value">--</p>
+                            <p class="purchase-label">Canceladas</p>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="purchase-item">
+                        <span class="material-icons" style="color: #ff922b; background: rgba(255, 146, 43, 0.2);">bar_chart</span>
+                        <div>
+                            <p id="devoluciones" class="purchase-value">$---.--</p>
+                            <p class="purchase-label">Devoluciones</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Summary -->
+            <div class="frame product-summary">
+                <h3>Resumen de Productos</h3>
+                <div class="product-summary-content">
+                    <div class="product-item">
+                        <span class="material-icons" style="color: #4c6ef5; background: rgba(76, 110, 245, 0.2);">supervisor_account</span>
+                        <div>
+                            <p id="proveedores" class="product-value">--</p>
+                            <p class="product-label">Número de Proveedores</p>
+                        </div>
+                    </div>
+                    <div class="divider"></div>
+                    <div class="product-item">
+                        <span class="material-icons" style="color: #845ef7; background: rgba(132, 94, 247, 0.2);">category</span>
+                        <div>
+                            <p id="categorias" class="product-value">--</p>
+                            <p class="product-label">Número de Categorías</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sales & Purchase -->
+            <div class="frame sales-purchase">
+                <h3>Ventas y Compras</h3>
+                <canvas id="orderChart"></canvas>
+            </div>
+            
+
+            <!-- Order Summary -->
+            <div class="frame order-summary">
+                <h3>Resumen de Ordenes</h3>
+                <canvas id="orderSummary" width="300" height="300" style="margin-top: 33px;"></canvas>
+            </div>
+
+            <!-- Top Selling Stock -->
+            <div class="frame top-selling-stock">
+                <div class="top-selling-header">
+                    <h3>Existencias Más Vendidas</h3>
+                    <button id="openTopSellingModalBtn" class="see-all-btn" onclick="openModal('topSellingModal')">Ver todo</button>
+                </div>
+                <table class="top-selling-table">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Cantidad Vendida</th>
+                            <th>Cantidad Restante</th>
+                            <th>Precio</th>
+                        </tr>
+                    </thead>
+                    <tbody id="top-selling-tbody">
+                        <!-- Las filas serán generadas dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Low Quantity Stock -->
+            <div class="frame low-quantity-stock">
+                <div class="low-stock-header">
+                    <h3>Existencias con Baja Disponibilidad</h3>
+                    <button class="see-all-btn" onclick="openModal('lowStockModal')">Ver todo</button>
+                </div>
+                <table class="low-stock-table">
+                    <tbody>
+                        <tr>
+                            <td><img src="tata.jpg" alt="Tata" class="product-image"></td>
+                            <td>
+                                <p class="product-name">Tata Salt</p>
+                                <p class="remaining-quantity">Cantidad Restante: 10 Paquetes</p>
+                            </td>
+                            <td><span class="low-stock-label">Bajo</span></td>
+                        </tr>
+                        <tr>
+                            <td><img src="lays.jpg" alt="Lays" class="product-image"></td>
+                            <td>
+                                <p class="product-name">Lays</p>
+                                <p class="remaining-quantity">Cantidad Restante: 15 Paquetes</p>
+                            </td>
+                            <td><span class="low-stock-label">Bajo</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
+
+    <!-- Modals -->
+   <!-- Modal para Existencias Más Vendidas -->
+    <div id="topSellingModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('topSellingModal')">&times;</span>
+            <h3>Existencias Más Vendidas</h3>
+            <table class="top-selling-modal-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Cantidad Vendida</th>
+                        <th>Cantidad Restante</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody id="modal-top-selling-tbody">
+                    <!-- Filas generadas dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal para Existencias con Baja Disponibilidad -->
+    <div id="lowStockModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('lowStockModal')">&times;</span>
+            <h3>Existencias con Baja Disponibilidad</h3>
+            <table class="low-stock-modal-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Cantidad Restante</th>
+                        <th>Unidad</th>
+                    </tr>
+                </thead>
+                <tbody id="modal-low-stock-tbody">
+                    <!-- Las filas se llenarán dinámicamente -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="./Dashboard.js"></script>
 </body>
 </html>
