@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos Pendientes</title>
+    <script>
+        async function marcarEntregado(orderId) {
+            const response = await fetch(`http://localhost:4000/api/proveedor/marcarentregado/${orderId}`, {
+                method: 'PUT',
+            });
+
+            if (response.ok) {
+                alert('Pedido marcado como entregado.');
+                location.reload();
+            } else {
+                const error = await response.json();
+                alert(`Error: ${error.error}`);
+            }
+        }
+
+        async function cargarPedidos() {
+            const response = await fetch('http://localhost:4000/api/proveedor/ordenesProveedor');
+            const pedidos = await response.json();
+
+            const tableBody = document.getElementById('tabla-pedidos');
+            tableBody.innerHTML = '';
+
+            pedidos.forEach(pedido => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${pedido.nombreProducto}</td>
+                    <td>${pedido.categoria}</td>
+                    <td>${pedido.cantidad}</td>
+                    <td>${pedido.nombreProveedor}</td>
+                    <td>
+                        <button onclick="marcarEntregado('${pedido.id}')">Marcar como Entregado</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        window.onload = cargarPedidos;
+    </script>
+</head>
+<body>
+    <h1>Pedidos Pendientes</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Categoría</th>
+                <th>Cantidad</th>
+                <th>Proveedor</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody id="tabla-pedidos"></tbody>
+    </table>
+</body>
+</html>

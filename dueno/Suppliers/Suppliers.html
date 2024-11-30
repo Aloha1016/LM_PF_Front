@@ -14,9 +14,9 @@
 <body>
     <div class="sidebar">
         <div class="logo">
-            <span class="material-icons">dashboard</span> KANBAN
+            <img src="../../assets/LogoTienda.png" alt="Kanban Logo" class="logo-img">
             <a href="/main_menu.html"></a>
-        </div>
+        </div> 
         <nav class="menu">
             <a href="./../Dashboard/Dashboard.html" class="menu-item"><span class="material-icons">home</span> Panel</a>
             <a href="./../Inventory/Inventory.html" class="menu-item"><span class="material-icons">inventory</span> Inventario</a>
@@ -47,6 +47,7 @@
                 <div class="suppliers-header">
                     <h2>Proveedores</h2>
                     <div class="table-actions">
+                        <button id="createOrderBtn">Crear Orden Proveedor</button>
                         <button id="addProductBtn">Agregar Proveedor</button>
                         <button id="Filtros" data-bs-target="#Filtros"><i class="bi bi-filter"></i> Filtros</button>
                         <button id="Download">Descargar Registros</button>
@@ -140,6 +141,39 @@
                         </form>
                     </div>
                 </div>
+
+                <div id="orderModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>Crear Orden de Proveedor</h2>
+                        <form id="ordenProveedorForm">
+                            <label for="nombreProducto">Nombre del Producto:</label>
+                            <input type="text" id="nombreProducto" name="nombreProducto" required>
+                
+                            <label for="nombreProveedor">Proveedor:</label>
+                            <select id="nombreProveedor" name="nombreProveedor" required>
+                                <option value="" disabled selected>Seleccione un proveedor</option>
+                            </select>
+                
+                            <label for="correoProveedor">Correo del Proveedor:</label>
+                            <input type="text" id="correoProveedor" name="correoProveedor" readonly>
+                
+                            <label for="categoria">Categoría:</label>
+                            <input type="text" id="categoria" name="categoria" required>
+                
+                            <label for="cantidad">Cantidad:</label>
+                            <input type="number" id="cantidad" name="cantidad" required>
+                
+                            <label for="unidad">Unidad:</label>
+                            <input type="text" id="unidad" name="unidad" required>
+                
+                            <label for="fechaEntrega">Fecha de Entrega:</label>
+                            <input type="date" id="fechaEntrega" name="fechaEntrega" required min="">
+                
+                            <button type="submit" class="crear-orden">Crear Orden</button>
+                        </form>
+                    </div>
+                </div>                
 
                 <table class="suppliers-table">
                     <thead>

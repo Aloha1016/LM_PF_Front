@@ -360,3 +360,101 @@ function logout() {
 }
 
 document.addEventListener('DOMContentLoaded', checkAuthentication);
+
+const orderModal = document.getElementById('orderModal'); 
+const createOrderBtn = document.getElementById('createOrderBtn'); 
+const closeOrderModal = orderModal.querySelector('.close'); 
+
+createOrderBtn.addEventListener('click', () => {
+    orderModal.style.display = 'flex'; 
+});
+
+closeOrderModal.addEventListener('click', () => {
+    orderModal.style.display = 'none'; 
+});
+
+window.addEventListener('click', (event) => {
+    if (event.target === orderModal) {
+        orderModal.style.display = 'none'; 
+    }
+});
+
+document.getElementById('fechaEntrega').min = new Date().toISOString().split("T")[0];
+
+    document.getElementById('nombreProducto').addEventListener('input', async () => {
+        const producto = document.getElementById('nombreProducto').value.trim();
+        const proveedorSelect = document.getElementById('nombreProveedor');
+        const correoProveedorInput = document.getElementById('correoProveedor');
+    
+        proveedorSelect.innerHTML = '<option value="" disabled selected>Seleccione un proveedor</option>';
+        correoProveedorInput.value = ''; // Limpiar el campo de correo
+    
+        if (producto) {
+            try {
+                const response = await fetch(`http://localhost:4000/api/proveedor/proveedores/producto?producto=${producto}`);
+    
+                if (!response.ok) {
+                    throw new Error(`Error del servidor: ${response.status} ${response.statusText}`);
+                }
+    
+                const proveedores = await response.json();
+    
+                if (proveedores.length > 0) {
+                    for (const proveedor of proveedores) {
+                        const option = document.createElement('option');
+                        option.value = proveedor.nombreProveedor; // Almacena el nombre
+                        option.dataset.correo = proveedor.correo; // Almacena el correo como atributo de datos
+                        option.textContent = proveedor.nombreProveedor;
+                        proveedorSelect.appendChild(option);
+                    }
+                } else {
+                    alert('No se encontraron proveedores para este producto.');
+                }
+            } catch (error) {
+                console.error('Error al obtener proveedores:', error);
+            }
+        }
+    });
+    
+    document.getElementById('nombreProveedor').addEventListener('change', (e) => {
+        const proveedorSelect = e.target;
+        const selectedOption = proveedorSelect.options[proveedorSelect.selectedIndex];
+        const correo = selectedOption.dataset.correo; // Obtener el correo del atributo de datos
+        document.getElementById('correoProveedor').value = correo || ''; // Mostrar el correo
+    });
+    
+    document.getElementById('ordenProveedorForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+    
+        const formData = new FormData(e.target);
+        const data = Object.fromEntries(formData.entries());
+    
+        try {
+            const response = await fetch('http://localhost:4000/api/proveedor/crearordenproveedor', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+    
+            if (response.ok) {
+                const responseData = await response.json();
+                alert(`Orden creada exitosamente. Estado inicial: ${responseData.estado}`);
+    
+                // Cerrar el modal
+                const orderModal = document.getElementById('orderModal');
+                orderModal.style.display = 'none';
+    
+                // Reiniciar el formulario
+                e.target.reset();
+    
+                // Actualizar la página
+                location.reload();
+            } else {
+                const error = await response.json();
+                alert(`Error al crear la orden: ${error.error}`);
+            }
+        } catch (error) {
+            console.error('Error al enviar la orden:', error);
+        }
+    });
+        

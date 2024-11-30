@@ -11,12 +11,16 @@ body {
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    text-align: center;
-    margin-bottom: 10px;
-    padding-bottom: 20px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;  
+    text-align: center; 
+}
+
+.logo-img {
+    width: 150px; 
+    height: auto;
+    margin-bottom: 2.5px;
 }
 
 .sidebar {
@@ -272,7 +276,6 @@ body {
     color: black; /* Mantiene el texto negro al pasar el ratón */
  }
 
-
 .pagination button:disabled {
     cursor: not-allowed;
     opacity: 0.5;
@@ -338,4 +341,38 @@ body {
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+
+/* Estilo del botón "Crear Orden Proveedor" */
+#createOrderBtn {
+    background-color: #007bff; /* Blanco */
+    color: #ffffff; /* Negro */
+    border: 1px solid #0056b3; /* Borde gris claro */
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Efecto hover para el botón */
+#createOrderBtn:hover {
+    background-color: #0056b3; /* Gris claro */
+    color: #000000; /* Negro */
+}
+
+/* Otros botones dentro del modal */
+.modal-content button {
+    background-color: #ffffff; 
+    color: #000000;
+    border: 1px solid #000000;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: #ccc; /* Azul más oscuro */
 }
