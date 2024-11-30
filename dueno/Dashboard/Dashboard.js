@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <td>${product.nombre || ""}</td>
           <td>${product.cantidadVendida || ""}</td>
           <td>${product.cantidadRestante || ""}</td>
-          <td>${product.precio ? `$ ${product.precio}` : ""}</td>
+          <td>${product.precio ? `$ ${product.precio.toFixed(2)}` : ""}</td>
         `;
   
         tbody.appendChild(row);
@@ -303,7 +303,7 @@ async function fetchTopSellingProducts() {
                     <td>${product.nombre || 'N/A'}</td>
                     <td>${product.cantidadVendida || 'N/A'}</td>
                     <td>${product.cantidadRestante || 'N/A'}</td>
-                    <td>${product.precio || 'N/A'}</td>
+                    <td>${product.precio.toFixed(2) || 'N/A'}</td>
                 `;
                 tbody.appendChild(row);
             });
@@ -512,3 +512,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Error al renderizar la gráfica:', error);
     }
 });
+
+function checkAuthentication() {
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = '../../../main.html';
+    }
+}
+
+function logout() {
+    localStorage.removeItem('token');
+    window.location.href = '../../../main.html';
+}
+
+document.addEventListener('DOMContentLoaded', checkAuthentication);

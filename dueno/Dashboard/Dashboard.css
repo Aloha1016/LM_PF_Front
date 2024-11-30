@@ -38,6 +38,7 @@ body {
 .options {
     display: flex;
     flex-direction: column;
+    margin-top: auto;
 }
 
 .menu-item {

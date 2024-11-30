@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./Details.css">
     <link rel="stylesheet" href="./modal.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="sidebar">
@@ -24,7 +26,7 @@
         </nav>
         <nav class="options">
             <a href="#" class="menu-item"><span class="material-icons">settings</span> Ajustes</a>
-            <button class="log-button"><span class="material-icons">logout</span> Cerrar Sesión</button>
+            <button class="log-button" onclick="logout()"><span class="material-icons">logout</span> Cerrar Sesión</button>
         </nav>
     </div>
 
@@ -49,7 +51,7 @@
                         <button id="addProductBtn" class="header-btn">
                             <span class="material-icons">edit</span>Editar
                         </button>
-                        <button class="header-btn" >Download</button>
+                        <button id="downloadBtn" class="header-btn">Descargar</button>
                     </div>
                 </div>
 
@@ -59,54 +61,30 @@
                         <span class="close">&times;</span>
                         <h2>Editar Producto</h2>
                         <div class="form-container">
-                            <div class="image-upload">
-                                <div class="image-placeholder">
-                                    Drag image here <br> or <a href="#">Browse image</a>
-                                </div>
-                            </div>
-                            <form>
-                                <label>Nombre del Producto</label>
-                                <input type="text" placeholder="Nombre del Producto">
-
-                                <label>Producto ID</label>
-                                <input type="text" placeholder="Producto ID">
-
-                                <label>Categoria</label>
-                                <select>
-                                    <option>Categoria 1</option>
-                                    <option>Category 2</option>
-                                    <option>Category 3</option>
-                                </select>
-
-                                <label>Precio de Compra</label>
-                                <input type="number" placeholder="Precio de Compra">
-
-                                <label>Cantidad</label>
-                                <input type="number" placeholder="Cantidad de Producto">
-
-                                <label>Unidad</label>
-                                <input type="text" placeholder="Unidad del Producto">
-
+                            <form id="updateProductForm">
                                 <label>Fecha de Caducidad</label>
-                                <input type="date">
-
-                                <label>Threshold Value</label>
-                                <input type="text" placeholder="Valor">
-
+                                <input type="date" id="fechaCaducidad">
+                            
+                                <label>Precio de Compra</label>
+                                <input type="number" id="precioCompra" placeholder="Precio de Compra">
+                            
+                                <label>Valor Umbral</label>
+                                <input type="number" id="valorUmbral" placeholder="Valor Umbral">
+                            
                                 <div class="form-buttons">
                                     <button type="button" class="discard">Descartar</button>
                                     <button type="submit" class="add-product">Actualizar Producto</button>
                                 </div>
-                            </form>
+                            </form>                            
                         </div>
                     </div>
                 </div>
 
                 <!-- Pestañas -->
                 <div class="tabs">
-                    <button class="tab-btn" data-target="Overview active">General</button>
+                    <button class="tab-btn" data-target="Overview">General</button>
                     <button class="tab-btn" data-target="Purchases">Compras</button>
-                    <button class="tab-btn" data-target="Adjustments">Ajustes</button>
+                    <button class="tab-btn" data-target="Adjustments">Ventas</button>
                     <button class="tab-btn" data-target="History">Historial</button>
                     <div class="tab-indicator"></div>
                 </div>
@@ -119,29 +97,29 @@
                         <div class="details-left">
                             <div class="primary-details">
                                 <h3>Detalles Principales</h3>
-                                <p>Nombre del Producto: <strong>Maggi</strong></p>
-                                <p>Producto ID: <strong>456567</strong></p>
-                                <p> Categoria del Producto: <strong>Instant food</strong></p>
-                                <p>Fecha de Caducidad: <strong>13/4/23</strong></p>
-                                <p>Valor: <strong>12</strong></p>
+                                <p>Nombre del Producto: <strong id="nombreProducto">Cargando...</strong></p>
+                                <p>Producto ID: <strong id="productoId">Cargando...</strong></p>
+                                <p>Categoria: <strong id="categoria">Cargando...</strong></p>
+                                <p>Fecha de Caducidad: <strong id="fechaCaducidad2">Cargando...</strong></p>
+                                <p>Precio de Compra: <strong id="precioCompra2">Cargando...</strong></p>
                             </div>
                             <div class="supplier-details">
                                 <h3>Detalles del proveedor</h3>
-                                <p>Nombre del Proveedor: <strong>Ronald Martin</strong></p>
-                                <p>Numero de Contacto: <strong>98789 86757</strong></p>
+                                <p>Nombre del Proveedor: <strong id="nombreProveedor">Cargando...</strong></p>
+                                <p>Numero de Contacto: <strong id="numeroContacto">Cargando...</strong></p>
                             </div>
                         </div>
                     
                         <!-- Imagen del producto y detalles de stock -->
                         <div class="details-right">
                             <div class="product-image">
-                                <img src="https://via.placeholder.com/150" alt="Product Image">
+                                <img id="imagenProducto" src="https://via.placeholder.com/150" alt="Imagen del Producto">
                             </div>
                             <div class="stock-info">
-                                <p>Stock Inicial: <strong>40</strong></p>
-                                <p>Stock Restante : <strong>34</strong></p>
-                                <p>En camino: <strong>15</strong></p>
-                                <p>Threshold value: <strong>12</strong></p>
+                                <p>Cantidad: <strong id="cantidad">Cargando...</strong></p>
+                                <p>Valor Umbral: <strong id="valorUmbral2">Cargando...</strong></p>
+                                <p>Estado: <strong id="estado">Cargando...</strong></p>
+                                <p>En camino: <strong id="cantidadProveedor">Cargando...</strong></p>
                             </div>
                         </div>
 
@@ -155,19 +133,8 @@
                                         <th>Inventario</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Sulur Branch</td>
-                                        <td><span>15</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Singanallur Branch</td>
-                                        <td><span>19</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Singanallur Branch</td>
-                                        <td><span>19</span></td>
-                                    </tr>
+                                <tbody id="id_del_producto">
+                                    
                                 </tbody>
                             </table>
                         </div>
@@ -175,20 +142,53 @@
                     </div>
                 </div>
                 
+                <div class="orders-table-container">
                 <div id="purchases" class="tab-content">
                     <h3>Historial de Compras</h3>
-                    <p>Contenido relacionado con compras aparecerá aquí.</p>
-                </div>
+                    <table class="orders-table">
+                      <thead>
+                        <tr>
+                          <th>Nombre del Producto</th>
+                          <th>Categoría</th>
+                          <th>Proveedor</th>
+                          <th>Correo Proveedor</th>
+                          <th>Fecha de Entrega</th>
+                          <th>Estado</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- Las filas serán generadas dinámicamente -->
+                      </tbody>
+                    </table>
+                  </div>   
+                </div>               
         
                 <div id="adjustments" class="tab-content">
-                    <h3>Ajustes del Producto</h3>
-                    <p>Contenido relacionado con ajustes aparecerá aquí.</p>
-                </div>
-        
-                <div id="history" class="tab-content">
-                    <h3>Historial del Producto</h3>
-                    <p>Contenido relacionado con el historial aparecerá aquí.</p>
-                </div>
+                    <h3>Ventas del último Mes</h3>
+                    <canvas id="adjustmentsChart"></canvas>
+                </div>                
+                
+                <div class="orders-table-container">
+                    <div id="history" class="tab-content">
+                        <h3>Historial del Producto</h3>
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Nombre del Producto</th>
+                                    <th>Categoría</th>
+                                    <th>Unidad</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio Pedido</th>
+                                    <th>Fecha de Entrega</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Las filas se cargarán dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>  
+                </div>              
 
             </div>
         </div>

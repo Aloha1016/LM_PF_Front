@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="./Inventory.css">
     <link rel="stylesheet" href="./modal.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.26/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
     <div class="sidebar">
@@ -24,7 +26,7 @@
         </nav>
         <nav class="options">
             <a href="#" class="menu-item"><span class="material-icons">settings</span> Ajustes</a>
-            <button class="log-button"><span class="material-icons">logout</span> Cerrar Sesión</button>
+            <button class="log-button" onclick="logout()"><span class="material-icons">logout</span> Cerrar Sesión</button>
         </nav>
     </div>
 
@@ -45,21 +47,64 @@
             <div class="frame overall-inventory">
                 <h2>Inventario General</h2>
                 <div class="overview-cards">
-                    <div class="card">Categorias<br><span>14</span><br><small>Last 7 days</small></div>
-                    <div class="card">Productos Totales<br><span>868</span><br><small>Last 7 days</small></div>
-                    <div class="card">Mas Vendidos<br><span>₹25000</span><br><small>Revenue</small></div>
-                    <div class="card">Bajo Stock<br><span>12</span><br><small>Ordenado</small></div>
+                    <div class="card blue">
+                        <h3>Categorías</h3>
+                        <div class="info-single">
+                            <span id="categorias" >--</span>
+                            <small></small>
+                        </div>
+                    </div>
+                    <div class="card orange">
+                        <h3>Productos Totales</h3>
+                        <div class="info-row">
+                            <div>
+                                <span id="existe" >--</span>
+                                <small>En existencia</small>
+                            </div>
+                            <div>
+                                <span id="existeEco" >$--,--</span>
+                                <small>Ingresos</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card purple">
+                        <h3>Ventas Máximas</h3>
+                        <div class="info-row">
+                            <div>
+                                <span id="ventasP" >--</span>
+                                <small>Últimos 7 días</small>
+                            </div>
+                            <div>
+                                <span id="ingresosP" >$--,--</span>
+                                <small>Ganancias</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card red">
+                        <h3>Bajo Stock</h3>
+                        <div class="info-row">
+                            <div>
+                                <span id="PD" >--</span>
+                                <small>Poca Disponibilidad</small>
+                            </div>
+                            <div>
+                                <span id="Agotados" >--</span>
+                                <small>Agotado</small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        
+                                       
             <!-- Sección inferior -->
             <div class="frame products-table">
                 <div class="products-header">
                     <h2>Productos</h2>
                     <div class="table-actions">
                         <button id="addProductBtn">Agregar Producto</button>
-                        <button>Filtros</button>
-                        <button>Download</button>
+                        <button id="openFiltersBtn">
+                            <span class="material-icons">filter_list</span> Filtros
+                        </button>
+                        <button id="descarga">Descargar</button>
                     </div>
                 </div>
 
@@ -117,6 +162,41 @@
                     </div>
                 </div>
 
+                <div id="filtersModal" class="modal">
+                    <div class="modal-content">
+                      <span class="close">&times;</span>
+                      <h2>Filtros</h2>
+                      <form id="filtersForm">
+                        <label for="filterEstado">Estado:</label>
+                        <select id="filterEstado" name="estado">
+                          <option value="">Todos</option>
+                          <option value="Agotado">Agotados</option>
+                          <option value="Poca disponibilidad">Poca Disponibilidad</option>
+                          <option value="Disponible">Disponible</option>
+                        </select>
+                  
+                        <label for="sortField">Ordenar por:</label>
+                        <select id="sortField" name="sortBy">
+                          <option value="nombre" selected>Nombre</option>
+                          <option value="precioCompra">Precio</option>
+                          <option value="fechaCaducidad">Fecha de Caducidad</option>
+                          <option value="cantidad">Cantidad</option>
+                        </select>
+                  
+                        <label for="sortOrder">Orden:</label>
+                        <select id="sortOrder" name="sortOrder">
+                          <option value="asc" selected>Ascendente</option>
+                          <option value="desc">Descendente</option>
+                        </select>
+                  
+                        <div class="form-buttons">
+                          <button type="button" class="discard">Cancelar</button>
+                          <button type="submit" class="apply-filters">Aplicar Filtros</button>
+                        </div>
+                      </form>
+                    </div>
+                </div>                  
+
                 <table>
                     <thead>
                         <tr>
@@ -138,6 +218,8 @@
                     <button>Siguiente</button>
                 </div>
             </div>
+
+            
         </div>
     </div>
     <script src="./form.js"></script>

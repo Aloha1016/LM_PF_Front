@@ -12,7 +12,7 @@ body {
 
 .sidebar {
     width: 280px;
-    height: 650px;
+    height: 100vh;
     background-color: #f4f4f9;
     padding: 25px;
     display: flex;
@@ -32,12 +32,13 @@ body {
 .menu {
     display: flex;
     flex-direction: column;
-    padding-bottom: 120px;
+    gap: 10px;
 }
 
 .options {
     display: flex;
     flex-direction: column;
+    margin-top: auto;
 }
 
 .menu-item {
@@ -382,4 +383,100 @@ body {
 
 .stock-table td:last-child {
     text-align: center; /* Alinea la segunda columna a la derecha */
+}
+
+.modal {
+    display: none; /* Ocultar el modal */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo semitransparente */
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%; /* Tamaño del modal */
+}
+
+.orders-table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.orders-table thead {
+    background-color: #4CAF50;
+    color: #fff;
+    text-align: left;
+}
+
+.orders-table th, .orders-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+.orders-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.orders-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.orders-table th {
+    font-weight: bold;
+}
+
+.orders-table-container h3 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#adjustmentsChart {
+    max-width: 100%; 
+    max-height: 400px; 
+    width: 100%; 
+    height: auto; 
+}
+
+.table-actions .header-btn {
+    background-color: #ffffff; /* Fondo blanco */
+    color: #000000; /* Texto negro */
+    border: 1px solid #cccccc; /* Borde gris claro */
+    padding: 8px 16px; /* Espaciado interno */
+    font-size: 14px; /* Tamaño de fuente */
+    border-radius: 4px; /* Bordes redondeados */
+    cursor: pointer; /* Cambiar cursor al pasar por encima */
+    transition: background-color 0.3s, color 0.3s; /* Transición suave */
+}
+
+.table-actions .header-btn:hover {
+    background-color: #f0f0f0; /* Fondo gris claro al pasar el cursor */
+    color: #333333; /* Texto gris oscuro al pasar el cursor */
+}
+
+.table-actions .header-btn .material-icons {
+    vertical-align: middle; /* Alinear el ícono verticalmente */
+    margin-right: 8px; /* Espacio entre ícono y texto */
 }
